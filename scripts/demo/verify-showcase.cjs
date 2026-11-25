@@ -5,7 +5,10 @@ const path = require('path');
 const cp = require('child_process');
 
 const DOCS_DIR = path.resolve(__dirname, '../../docs/assets/showcase');
-const WEBSITE_DIR = path.resolve(__dirname, '../../../flopos.com-showcase/media/showcase');
+const WEBSITE_DIR = path.resolve(
+  __dirname,
+  '../../../senovadigitallabs.example-showcase/media/showcase',
+);
 
 const SCENES = [
   { id: 'pos-checkout', width: 800, height: 450 },
@@ -64,7 +67,7 @@ function decodeVideo(mp4Path) {
 }
 
 function verifyShowcase() {
-  console.log('=== Verifying FloCafe Showcase Assets ===\n');
+  console.log('=== Verifying SENOVA POS Showcase Assets ===\n');
   const results = [];
   let hasErrors = false;
 

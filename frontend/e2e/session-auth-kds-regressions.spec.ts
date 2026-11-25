@@ -254,7 +254,7 @@ test.describe.serial('Session, Authentication & KDS Identity Regressions', () =>
       await page.waitForTimeout(500);
 
       const tokenAfterResponse = await page.evaluate(() =>
-        localStorage.getItem('flocafe:server-app-token'),
+        localStorage.getItem('senova:server-app-token'),
       );
       expect(tokenAfterResponse).toBeNull();
 
@@ -266,9 +266,7 @@ test.describe.serial('Session, Authentication & KDS Identity Regressions', () =>
         timeout: 15_000,
       });
       await expect(credButton).toHaveCount(0);
-      expect(
-        await page.evaluate(() => localStorage.getItem('flocafe:server-app-token')),
-      ).toBeNull();
+      expect(await page.evaluate(() => localStorage.getItem('senova:server-app-token'))).toBeNull();
 
       expect(pageErrors).toHaveLength(0);
     } finally {

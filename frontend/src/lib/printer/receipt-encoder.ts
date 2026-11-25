@@ -1,4 +1,4 @@
-/** Converts a Flo POS Bill and nested Order into raw ESC/POS bytes. */
+/** Converts a SENOVA POS Bill and nested Order into raw ESC/POS bytes. */
 import ReceiptPrinterEncoder from '@point-of-sale/receipt-printer-encoder';
 import type { Bill, Tenant } from '@/lib/types';
 import { normalizeCurrencyToAscii, normalizeThermalText, padCurrencyPrefix } from './unicode';

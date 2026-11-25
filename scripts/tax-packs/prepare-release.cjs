@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { createHash, createPrivateKey, sign } = require('crypto');
 
-const REPOSITORY = 'FreeOpenSourcePOS/FloCafe-Plugins';
+const REPOSITORY = 'SenovaDigitalLabs/senova-pos-plugins';
 const TAG_PATTERN = /^tax-pack-([a-z0-9][a-z0-9-]*)-v(\d+\.\d+\.\d+)$/;
 
 function parseArgs(argv) {
@@ -42,7 +42,8 @@ function readPackForTag(tag, packsDirectory) {
   const match = TAG_PATTERN.exec(tag);
   if (!match) throw new Error('Tag must match tax-pack-<pack-id>-vX.Y.Z');
   const [, packId, version] = match;
-  const files = fs.readdirSync(packsDirectory)
+  const files = fs
+    .readdirSync(packsDirectory)
     .filter((file) => file.endsWith('.json'))
     .sort();
   for (const file of files) {
@@ -109,7 +110,10 @@ function prepareRelease({
   fs.mkdirSync(outputDirectory, { recursive: true });
   fs.writeFileSync(path.join(outputDirectory, packAssetName), packJson);
   fs.writeFileSync(path.join(outputDirectory, signatureAssetName), `${signature}\n`);
-  fs.writeFileSync(path.join(outputDirectory, 'catalog.json'), `${JSON.stringify(catalog, null, 2)}\n`);
+  fs.writeFileSync(
+    path.join(outputDirectory, 'catalog.json'),
+    `${JSON.stringify(catalog, null, 2)}\n`,
+  );
   return { packAssetName, signatureAssetName, catalog, entry };
 }
 

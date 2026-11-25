@@ -2,7 +2,7 @@ import { test, expect, Page } from '@playwright/test';
 import { E2E_BASE_URL, E2E_SERVER_APP_BASE_URL } from './helpers/urls';
 import { getE2eToken } from './helpers/test-auth';
 
-const TOKEN_KEY = 'flocafe:server-app-token';
+const TOKEN_KEY = 'senova:server-app-token';
 
 async function openServerApp(page: Page, serverToken: string): Promise<void> {
   await page.goto(`${E2E_SERVER_APP_BASE_URL}/server-standalone`);

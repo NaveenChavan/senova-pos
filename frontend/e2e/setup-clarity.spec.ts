@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { E2E_BASE_URL as BASE } from './helpers/urls';
 import { getE2eToken } from './helpers/test-auth';
 
-test.describe('FloCafe Manager Setup Clarity - Add-ons (#1155)', () => {
+test.describe('SENOVA POS Manager Setup Clarity - Add-ons (#1155)', () => {
   const ownerToken = getE2eToken('e2e-owner', 'owner@flo.local', 'owner');
   const cashierToken = getE2eToken('e2e-cashier', 'cashier@flo.local', 'cashier');
   const authHeaders = { Authorization: `Bearer ${ownerToken}` };

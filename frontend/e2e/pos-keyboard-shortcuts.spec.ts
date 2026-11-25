@@ -6,7 +6,7 @@ import { E2E_BASE_URL as BASE } from './helpers/urls';
 
 const SCREENSHOTS_DIR =
   process.env.E2E_EVIDENCE_DIR ||
-  path.resolve(__dirname, '../../data/flocafe-pos-keyboard-shortcuts-r1/screenshots');
+  path.resolve(__dirname, '../../data/senova-pos-pos-keyboard-shortcuts-r1/screenshots');
 const managerHeaders = {
   Authorization: `Bearer ${getE2eToken('e2e-manager', 'manager@flo.local', 'manager')}`,
 };

@@ -207,32 +207,36 @@ if (args[0] === 'ls') {
 
   console.log('Testing kill-ports.js process identity matching...');
 
-  // Positive cases (should match as Flo processes)
+  // Positive cases (should match as SENOVA POS processes)
   const positiveCases = [
-    'node /Users/dev/FloCafe/dist/index.js',
-    'node /Users/dev/FloCafe/dist/main/index.js',
-    'node C:\\FloCafe\\dist\\main\\index.js',
-    '/Applications/Flo Cafe.app/Contents/MacOS/Flo Cafe',
-    '/usr/bin/flocafe --no-sandbox',
-    'electron . --appName=flo-desktop',
-    'node /path/to/FloCafe/dev-server.js',
-    'node /path/to/FloCafe/dist/index.js',
-    'com.flo.desktop.helper',
+    'node /Users/dev/SENOVA POS/dist/index.js',
+    'node /Users/dev/SENOVA POS/dist/main/index.js',
+    'node C:\\SENOVA POS\\dist\\main\\index.js',
+    '/Applications/SENOVA POS.app/Contents/MacOS/SENOVA POS',
+    '/usr/bin/senova-pos --no-sandbox',
+    'electron . --appName=senova-pos',
+    'node /path/to/SENOVA POS/dev-server.js',
+    'node /path/to/SENOVA POS/dist/index.js',
+    'com.senovadigitallabs.pos.helper',
     'flo-pos-service',
   ];
 
   for (const cmd of positiveCases) {
-    assert.strictEqual(isFloProcess(cmd), true, `Expected "${cmd}" to match Flo process patterns`);
+    assert.strictEqual(
+      isFloProcess(cmd),
+      true,
+      `Expected "${cmd}" to match SENOVA POS process patterns`,
+    );
   }
 
-  // Negative cases (should NOT match as Flo processes)
+  // Negative cases (should NOT match as SENOVA POS processes)
   const negativeCases = [
     'node /Users/dev/other-project/index.js',
     'node /Users/other-project/dist/index.js',
     'node /Users/other-project/dev-server.js',
     'node /home/user/app/dev-server.js',
-    'node /Users/dev/FloCafe/other-server.js',
-    'node /Users/dev/FloCafe-tools/dev-server.js',
+    'node /Users/dev/SENOVA POS/other-server.js',
+    'node /Users/dev/SENOVA POS-tools/dev-server.js',
     'python3 -m http.server 3000',
     'nginx: master process',
     'postgres -D /data',
@@ -243,7 +247,7 @@ if (args[0] === 'ls') {
     assert.strictEqual(
       isFloProcess(cmd),
       false,
-      `Expected "${cmd}" to NOT match Flo process patterns`,
+      `Expected "${cmd}" to NOT match SENOVA POS process patterns`,
     );
   }
 
@@ -276,9 +280,9 @@ if (args[0] === 'ls') {
   try {
     const darwinHome = path.join(tmpDir, 'darwin-home');
     const darwinPaths = [
-      path.join(darwinHome, 'Library/Application Support/flo-desktop/Cache'),
-      path.join(darwinHome, 'Library/Application Support/flo-desktop/Code Cache'),
-      path.join(darwinHome, 'Library/Caches/flo-desktop'),
+      path.join(darwinHome, 'Library/Application Support/senova-pos/Cache'),
+      path.join(darwinHome, 'Library/Application Support/senova-pos/Code Cache'),
+      path.join(darwinHome, 'Library/Caches/senova-pos'),
     ];
     darwinPaths.forEach(mkdirp);
     const darwinResult = runReset('Darwin', { HOME: darwinHome });
@@ -314,9 +318,9 @@ if (args[0] === 'ls') {
     const linuxConfigHome = path.join(tmpDir, 'linux-config');
     const linuxCacheHome = path.join(tmpDir, 'linux-cache');
     const linuxPaths = [
-      path.join(linuxConfigHome, 'flo-desktop/Cache'),
-      path.join(linuxConfigHome, 'flo-desktop/Code Cache'),
-      path.join(linuxCacheHome, 'flo-desktop'),
+      path.join(linuxConfigHome, 'senova-pos/Cache'),
+      path.join(linuxConfigHome, 'senova-pos/Code Cache'),
+      path.join(linuxCacheHome, 'senova-pos'),
     ];
     linuxPaths.forEach(mkdirp);
     const linuxResult = runReset('Linux', {
@@ -340,9 +344,9 @@ if (args[0] === 'ls') {
     const windowsAppData = path.join(tmpDir, 'windows-appdata');
     const windowsLocalAppData = path.join(tmpDir, 'windows-localappdata');
     const windowsPaths = [
-      path.join(windowsAppData, 'flo-desktop/Cache'),
-      path.join(windowsAppData, 'flo-desktop/Code Cache'),
-      path.join(windowsLocalAppData, 'flo-desktop'),
+      path.join(windowsAppData, 'senova-pos/Cache'),
+      path.join(windowsAppData, 'senova-pos/Code Cache'),
+      path.join(windowsLocalAppData, 'senova-pos'),
     ];
     windowsPaths.forEach(mkdirp);
     const windowsResult = runReset('Windows_NT', {

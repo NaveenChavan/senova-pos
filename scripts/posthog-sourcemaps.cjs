@@ -9,7 +9,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const CLI = '@posthog/cli@0.19.0';
-const RELEASE_NAME = 'flocafe';
+const RELEASE_NAME = 'senova-pos';
 const DEFAULT_HOST = 'https://eu.posthog.com';
 const ROOT = path.resolve(__dirname, '..');
 const DIRECTORIES = ['frontend/out', 'dist'];

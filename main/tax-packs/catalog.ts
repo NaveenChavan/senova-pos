@@ -9,8 +9,9 @@ import type { CountryPack, CountryTaxPackPluginArtifact, PluginPrintTemplate } f
 import { TRUSTED_TAX_PACK_SIGNING_PUBLIC_KEY } from './trusted-signing-key';
 import { validateTemplateChargeRows, validateTemplateLabelsMap } from '../print/template-labels';
 
-const RELEASES_API_URL = 'https://api.github.com/repos/FreeOpenSourcePOS/FloCafe-Plugins/releases';
-const RELEASE_DOWNLOAD_PATH_PREFIX = '/FreeOpenSourcePOS/FloCafe-Plugins/releases/download/';
+const RELEASES_API_URL =
+  'https://api.github.com/repos/SenovaDigitalLabs/senova-pos-plugins/releases';
+const RELEASE_DOWNLOAD_PATH_PREFIX = '/SenovaDigitalLabs/senova-pos-plugins/releases/download/';
 const REQUEST_TIMEOUT_MS = 15_000;
 const MAX_RELEASE_PAGES = 10;
 const MAX_CATALOG_BYTES = 1_000_000;
@@ -209,7 +210,7 @@ async function fetchText(
   try {
     response = await fetchImpl(url, {
       headers: {
-        'User-Agent': 'FloCafe-Tax-Pack-Manager',
+        'User-Agent': 'SENOVA POS-Tax-Pack-Manager',
         Accept: 'application/json',
         ...headers,
       },

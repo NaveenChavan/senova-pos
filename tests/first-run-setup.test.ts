@@ -4,7 +4,7 @@ import * as http from 'node:http';
 import * as os from 'node:os';
 import * as path from 'node:path';
 
-process.env.FLOCAFE_TEST_VERBOSE = '1';
+process.env.SENOVA_TEST_VERBOSE = '1';
 
 const Module = require('module');
 const originalLoad = Module._load;
@@ -112,7 +112,7 @@ async function main() {
   assert.equal(count('printers'), 0, 'fresh install starts with no default printer');
   assert.equal(
     setting('cloud_server_url'),
-    'https://blue.flopos.com/',
+    'https://blue.senovadigitallabs.example/',
     'cloud server URL is seeded',
   );
   assert.match(
@@ -484,7 +484,7 @@ async function main() {
     );
     assert.equal(
       setting('cloud_server_url'),
-      'https://blue.flopos.com',
+      'https://blue.senovadigitallabs.example',
       'cloud server URL keeps the default',
     );
     console.log('   ✓ setup endpoint enables cloud coordination automatically');

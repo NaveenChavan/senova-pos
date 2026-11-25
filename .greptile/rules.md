@@ -1,10 +1,10 @@
-# FloCafe Code Review Rules
+# SENOVA POS Code Review Rules
 
 See [AGENTS.md](../AGENTS.md) and [docs/reference/product-invariants.md](../docs/reference/product-invariants.md) for canonical invariants and architectural definitions.
 
 ## 1. Orders Are Never Ownership-Gated
 
-FloCafe is an open system for order visibility. Any staff role with order access can view and act on any order, regardless of who created it.
+SENOVA POS is an open system for order visibility. Any staff role with order access can view and act on any order, regardless of who created it.
 
 - **Never gate orders by creator:** Do not check `order.user_id !== user.userId` or `role === 'server' && order.user_id !== ...`.
 - Order attribution (`user_id`, `created_by`) is solely for audit logging, never for access control.
@@ -32,7 +32,7 @@ When running in desktop mode (`NEXT_BUILD_MODE=desktop`), the Next.js frontend i
 
 ## 5. Data Safety & Migrations
 
-FloCafe stores customer business data in SQLite via `better-sqlite3`.
+SENOVA POS stores customer business data in SQLite via `better-sqlite3`.
 
 - Upgrades must never lose customer data. Never drop, truncate, or reset SQLite database tables in migrations or shortcuts, or in runtime code except through the approved currency reset flow below.
 - The only approved database reset is the owner-only, Master-PIN-gated currency reset flow at `POST /api/db-tools/currency-reset`.

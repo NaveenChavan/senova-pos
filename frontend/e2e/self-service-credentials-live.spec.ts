@@ -448,7 +448,7 @@ test.describe
 
     await page.evaluate(
       ([tok]) => {
-        localStorage.setItem('flocafe:server-app-token', tok);
+        localStorage.setItem('senova:server-app-token', tok);
         localStorage.setItem('pos-settings', JSON.stringify({ state: { language: 'en' } }));
       },
       [saToken],
@@ -479,7 +479,7 @@ test.describe
     await expect(saDialog).toBeHidden({ timeout: 10_000 });
 
     // Verify localStorage has fresh token
-    const storedToken = await page.evaluate(() => localStorage.getItem('flocafe:server-app-token'));
+    const storedToken = await page.evaluate(() => localStorage.getItem('senova:server-app-token'));
     expect(storedToken).toBeTruthy();
     expect(storedToken).not.toBe(saToken);
     await page.evaluate(() => localStorage.clear());

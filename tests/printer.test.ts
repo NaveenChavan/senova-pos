@@ -296,7 +296,7 @@ const fixtureBill = {
 };
 
 const fixtureBusiness = {
-  name: 'Flo Test Cafe',
+  name: 'SENOVA POS Test Cafe',
   address: '42 MG Road, Bengaluru 560001',
   phone: '+91 98765 43210',
   taxRegistrationNumber: 'TAXID-0001',
@@ -1263,7 +1263,7 @@ console.log('\n✅ Test 2: Compact receipt (80mm, 48 cols)');
   const buf = formatReceipt(fixtureOrder, fixtureBill, fixtureBusiness, 'compact', 48, true);
   const text = buf.toString('utf8');
 
-  assert('renders business name', text.includes('Flo Test Cafe'));
+  assert('renders business name', text.includes('SENOVA POS Test Cafe'));
   assert('renders bill number', text.includes('INV-20260421-0001'));
   assert('renders Cheeseburger row', text.includes('Cheeseburger'));
   assert('renders addon "Extra Cheese"', text.includes('Extra Cheese'));
@@ -1279,8 +1279,8 @@ console.log('\n✅ Test 2: Compact receipt (80mm, 48 cols)');
   assert('renders UPI payment', text.includes('UPI') && text.includes('₹450.00'));
   assert('renders tax registration number', text.includes('TAXID-0001'));
   assert(
-    'renders non-configurable FloPOS footer',
-    text.includes('Powered by FloPOS') && text.includes('(flopos.com)'),
+    'renders non-configurable SENOVA POS footer',
+    text.includes('Powered by SENOVA Digital Labs'),
   );
   const rowLines = visiblePreview(buf, 48).split('\n');
   const longRowIndex = rowLines.findIndex((l) => l.includes('Very Long Product Name That'));
@@ -1310,7 +1310,7 @@ console.log('\n✅ Test 3: Compact receipt on 58mm paper (32 cols)');
   const buf = formatReceipt(fixtureOrder, fixtureBill, fixtureBusiness, 'compact', 32, true);
   const text = buf.toString('utf8');
 
-  assert('still renders business name', text.includes('Flo Test Cafe'));
+  assert('still renders business name', text.includes('SENOVA POS Test Cafe'));
   assert('still renders TOTAL', text.includes('TOTAL'));
 
   const textLines = visiblePreview(buf, 32).split('\n').slice(1, -1);
@@ -1450,11 +1450,11 @@ console.log('\n✅ Test 4: Classic receipt template');
   const buf = formatReceipt(fixtureOrder, fixtureBill, fixtureBusiness, 'classic', 48, true);
   const text = buf.toString('utf8');
 
-  assert('renders business name', text.includes('Flo Test Cafe'));
+  assert('renders business name', text.includes('SENOVA POS Test Cafe'));
   assert('renders item and total', text.includes('Cheeseburger') && text.includes('₹950.00'));
   assert(
-    'renders non-configurable FloPOS footer',
-    text.includes('Powered by FloPOS') && text.includes('(flopos.com)'),
+    'renders non-configurable SENOVA POS footer',
+    text.includes('Powered by SENOVA Digital Labs'),
   );
   assert('ends with cut', bytesContain(buf, [GS, 0x56, 0x00]));
 
@@ -1473,8 +1473,8 @@ console.log('\n✅ Test 5: Tax-specific labels fall back to the default template
     !text.includes('TAX INVOICE'),
   );
   assert(
-    'renders non-configurable FloPOS footer',
-    text.includes('Powered by FloPOS') && text.includes('(flopos.com)'),
+    'renders non-configurable SENOVA POS footer',
+    text.includes('Powered by SENOVA Digital Labs'),
   );
 
   console.log('\n   — Rendered detailed fallback —');
@@ -1608,7 +1608,7 @@ console.log('\n✅ Test 5d: Bill content toggles are optional and never block pr
     const text = hidden.toString('utf8');
     assert(
       `${template}: hidden optional fields stay hidden`,
-      !text.includes('Flo Test Cafe') &&
+      !text.includes('SENOVA POS Test Cafe') &&
         !text.includes('42 MG Road') &&
         !text.includes('+91 98765') &&
         !text.includes('TAXID-0001') &&
@@ -1679,8 +1679,14 @@ console.log('\n✅ Test 7: Test page builder');
   const buf80 = buildTestPage('80mm');
   const buf58 = buildTestPage('58mm');
   const xprinter = buildTestPage('80mm', 'partial');
-  assert('80mm test page renders title', buf80.toString('utf8').includes('Flo Printer Test'));
-  assert('58mm test page renders title', buf58.toString('utf8').includes('Flo Printer Test'));
+  assert(
+    '80mm test page renders title',
+    buf80.toString('utf8').includes('SENOVA POS Printer Test'),
+  );
+  assert(
+    '58mm test page renders title',
+    buf58.toString('utf8').includes('SENOVA POS Printer Test'),
+  );
   assert(
     '80mm test page reports correct column width',
     buf80.toString('utf8').includes('Columns: 48'),
@@ -1813,7 +1819,7 @@ console.log(
   assert('real production IR setup produces ریال currency symbol', realIrCurrencySymbol === 'ریال');
 
   const irBusiness = {
-    name: 'Flo Cafe Tehran',
+    name: 'SENOVA POS Tehran',
     country: 'IR',
     currency: 'IRR',
     currency_symbol: realIrCurrencySymbol,
@@ -2051,7 +2057,7 @@ console.log(
   const { generateBillHtml } = frontendModules.webPrint;
 
   const frontendTenant = {
-    business_name: 'Flo Cafe Tehran',
+    business_name: 'SENOVA POS Tehran',
     country: 'IR',
     currency: 'IRR',
   };

@@ -26,7 +26,7 @@ export const INLINE_SEPARATOR_COLUMNS = 2;
 /**
  * Visible width of a label in printer columns. v1 measures UTF-16 code units
  * (thermal fonts are effectively monospaced for Latin and Persian/Arabic at
- * the code points FloCafe prints today); renderers may pre-shape text before
+ * the code points SENOVA POS prints today); renderers may pre-shape text before
  * applying these strategies. Keep pure: no Intl, no DOM measurement.
  */
 export function labelWidth(text: string): number {
@@ -43,10 +43,7 @@ export function labelWidth(text: string): number {
  *
  * Callers test this at 32/36/42/48 columns (58mm…80mm paper).
  */
-export function selectBilingualFit(
-  label: BilingualLabel,
-  columns: number,
-): BilingualFitStrategy {
+export function selectBilingualFit(label: BilingualLabel, columns: number): BilingualFitStrategy {
   if (label.secondary === undefined) return 'inline';
   if (!Number.isFinite(columns) || columns <= 0) return 'stacked';
   const total = labelWidth(label.primary) + INLINE_SEPARATOR_COLUMNS + labelWidth(label.secondary);

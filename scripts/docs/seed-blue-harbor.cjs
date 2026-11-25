@@ -1,6 +1,6 @@
 /**
  * Deterministic Blue Harbor Café Fixture Seeder
- * Populates an isolated SQLite database for FloCafe Help Center documentation & screenshots.
+ * Populates an isolated SQLite database for SENOVA POS Help Center documentation & screenshots.
  */
 const fs = require('fs');
 const path = require('path');
@@ -151,7 +151,7 @@ function seedBlueHarborCafe() {
   const caTaxPack = {
     schemaVersion: 1,
     id: 'official-ca-pack',
-    publisher: 'FreeOpenSourcePOS',
+    publisher: 'SenovaDigitalLabs',
     version: '1.0.0',
     country: 'CA',
     jurisdiction: 'ON',

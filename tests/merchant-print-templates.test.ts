@@ -303,7 +303,7 @@ console.log('\n▶ Ordered block composition in renderBillDocumentToClassicLines
   ok('reordered template renders every block segment at its template position');
 
   const canonicalSubset = renderOrdered(['business-header', 'totals', 'message']);
-  const subsetNameAt = indexOf(canonicalSubset, /Flo Parity Cafe/);
+  const subsetNameAt = indexOf(canonicalSubset, /SNV Parity Cafe/);
   const subsetBannerAt = indexOf(canonicalSubset, /\*\* receipt\.reprint\[en\] \*\*/);
   const subsetTotalsAt = indexOf(canonicalSubset, /subtotal/i);
   assert(subsetNameAt < subsetTotalsAt, 'canonical subset keeps the pinned legacy arrangement');
@@ -857,7 +857,7 @@ async function runLifecycle(): Promise<void> {
       'message thankYou override reaches rendered lines',
     );
     assert(
-      !reorderedText.includes('Flo Parity Cafe'),
+      !reorderedText.includes('SNV Parity Cafe'),
       'omitted business-header block is not rendered',
     );
     ok('reordered and omitted blocks render semantically through the document pipeline');

@@ -217,7 +217,7 @@ export function startKdsServer(): Promise<void> {
     app.get('/api/health', (_req: Request, res: Response) => {
       res.json({
         status: 'ok',
-        service: 'Flo KDS Server',
+        service: 'SENOVA POS KDS Server',
         version: '1.0.0',
         timestamp: new Date().toISOString(),
       });
@@ -1098,7 +1098,7 @@ export function startKdsServer(): Promise<void> {
       app.get('/', (_req: Request, res: Response) => {
         res.send(`
           <html><body style="font-family:sans-serif;padding:2rem">
-            <h2>Flo KDS – Build not found</h2>
+            <h2>SENOVA POS KDS – Build not found</h2>
             <p>Run <code>npm run build:frontend</code> then restart the app.</p>
           </body></html>
         `);

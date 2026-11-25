@@ -1,6 +1,6 @@
 # System overview
 
-FloCafe is an offline-first Electron desktop point-of-sale application. One Electron main process
+SENOVA POS is an offline-first Electron desktop point-of-sale application. One Electron main process
 hosts a SQLite database, three HTTP servers, and a set of native window surfaces. There is no
 separate backend host: the API server, the kitchen display server, and the server app server all
 run inside the same process as the UI.
@@ -81,7 +81,7 @@ Defaults come from the `PORT`, `KDS_PORT`, and `SERVER_APP_PORT` environment var
 
 ## LAN discovery
 
-On startup the app publishes an mDNS service named `Flo` of type `http` on host `flo`, so the POS
+On startup the app publishes an mDNS service named `SENOVA POS` of type `http` on host `flo`, so the POS
 resolves at `flo.local:<main port>` on the LAN. The TXT record carries the app version and the
 paths and ports of the KDS and server app surfaces, and the startup log prints the LAN IP as a
 fallback for networks where mDNS resolution fails.

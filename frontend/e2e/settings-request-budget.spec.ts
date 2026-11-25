@@ -211,7 +211,7 @@ test('About hydrates More Apps only when activated', async ({ page }) => {
   const apiPaths = collectApiPaths(page);
 
   await page.goto(`${BASE}/settings?tab=about`);
-  await expect(page.getByRole('heading', { name: 'About FloCafe', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'About SENOVA POS', exact: true })).toBeVisible();
   await expect(page.getByText('No apps to show yet.', { exact: true })).toBeVisible();
   expect(apiPaths.filter((path) => path === '/api/more-apps')).toHaveLength(1);
   expect(apiPaths.filter((path) => path === '/api/more-apps/revflo')).toHaveLength(0);
@@ -3049,11 +3049,11 @@ test('Refreshing local or Drive backup history while Load more is in flight igno
         auth_state: 'connected',
         secure_storage_available: true,
         connected: true,
-        account_email: 'owner@flocafe.test',
+        account_email: 'owner@senovadigitallabs.test',
         frequency: 'daily',
         retention_count: 7,
         destination_folder_id: 'folder-e2e-1',
-        destination_folder_name: 'FloCafe Backups',
+        destination_folder_name: 'SENOVA POS Backups',
         warning_acknowledged: true,
         warning_required: false,
       }),

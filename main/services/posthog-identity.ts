@@ -16,7 +16,7 @@ const ALIASED_SETTING = 'posthog_aliased';
 const LAUNCH_ID = randomUUID();
 
 function ref(namespace: string, value: string): string {
-  return createHash('sha256').update(`flocafe-${namespace}:${value}`).digest('hex').slice(0, 16);
+  return createHash('sha256').update(`senova-pos-${namespace}:${value}`).digest('hex').slice(0, 16);
 }
 
 /** The device: a hash of a random seed generated once and kept in this database. */

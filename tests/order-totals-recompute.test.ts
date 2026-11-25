@@ -80,7 +80,7 @@ const testTaxPack = {
   id: 'test-in-pack',
   country: 'IN',
   currency: 'INR',
-  publisher: 'FreeOpenSourcePOS',
+  publisher: 'SenovaDigitalLabs',
 };
 
 /** Frozen money columns, plus the per-rate tax components reduced to [title, rate, amount]. */

@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------
-# FloCafe — CI Validation
+# SENOVA POS — CI Validation
 # ---------------------------------------------------------------
 
 name: CI
@@ -265,7 +265,7 @@ jobs:
         env:
           CI: true
           REQUIRE_VISUAL_EVIDENCE: '1'
-          EVIDENCE_DIR: ${{ runner.temp }}/flocafe-release-regressions
+          EVIDENCE_DIR: ${{ runner.temp }}/senova-pos-release-regressions
 
       - name: Run Playwright tests (shard ${{ matrix.shard }}/4)
         working-directory: frontend
@@ -302,7 +302,7 @@ jobs:
         if: always() && matrix.shard == 1
         with:
           name: release-regression-evidence
-          path: ${{ runner.temp }}/flocafe-release-regressions/
+          path: ${{ runner.temp }}/senova-pos-release-regressions/
           if-no-files-found: ignore
           retention-days: 10
 

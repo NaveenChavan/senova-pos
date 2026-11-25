@@ -1,5 +1,5 @@
 /**
- * Regression and integration tests for FloCafe Issue #1174:
+ * Regression and integration tests for SENOVA POS Issue #1174:
  * Server App loopback proxy admission reservation handoff and maintenance synchronization.
  */
 import assert from 'node:assert/strict';
@@ -472,7 +472,7 @@ async function run() {
   `).run(
     'user-waiter-1',
     'Waiter One',
-    'waiter@flocafe.test',
+    'waiter@senovadigitallabs.test',
     passwordHash,
     'server',
     now(),
@@ -485,7 +485,7 @@ async function run() {
 
   try {
     const waiterToken = jwt.sign(
-      { userId: 'user-waiter-1', email: 'waiter@flocafe.test', role: 'server' },
+      { userId: 'user-waiter-1', email: 'waiter@senovadigitallabs.test', role: 'server' },
       getJWTSecret(),
       { expiresIn: '1h' },
     );

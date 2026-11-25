@@ -261,7 +261,7 @@ async function main() {
     ['currency', 'USD'],
     ['currency_symbol', '$'],
     ['timezone', 'America/New_York'],
-    ['business_name', 'Flo Test Cafe'],
+    ['business_name', 'SENOVA POS Test Cafe'],
     ['kot_printing_enabled', 'true'],
   ] as const) {
     setSetting(key, value);

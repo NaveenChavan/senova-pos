@@ -1798,7 +1798,7 @@ export default function POSPage() {
               setCounters(activeList);
               const savedId =
                 typeof window !== 'undefined'
-                  ? localStorage.getItem(`flocafe_active_counter_${currentStoreId}`)
+                  ? localStorage.getItem(`senova_active_counter_${currentStoreId}`)
                   : null;
               if (savedId) {
                 const matched = activeList.find((c) => c.id === savedId);
@@ -1874,9 +1874,9 @@ export default function POSPage() {
     }
     if (typeof window !== 'undefined') {
       if (counter) {
-        localStorage.setItem(`flocafe_active_counter_${currentStoreId}`, counter.id);
+        localStorage.setItem(`senova_active_counter_${currentStoreId}`, counter.id);
       } else {
-        localStorage.removeItem(`flocafe_active_counter_${currentStoreId}`);
+        localStorage.removeItem(`senova_active_counter_${currentStoreId}`);
       }
     }
   };
@@ -1987,7 +1987,7 @@ export default function POSPage() {
   const anyModalOpen = showTablePicker || anyOtherModalOpen;
 
   useBarcodeScanner((code) => {
-    if (code.startsWith('FLOCAFE-TICKET:')) {
+    if (code.startsWith('SENOVA-TICKET:')) {
       void handleLookupAndPayTicket(code);
       return;
     }

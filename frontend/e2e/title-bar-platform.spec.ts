@@ -64,7 +64,7 @@ test('browser/LAN has zero title-bar markup and unchanged layout at md+ viewport
       await expect(page.locator('.flo-title-bar'), label).toHaveCount(0);
       await expect(page.locator('.flo-title-bar__fallback-controls'), label).toHaveCount(0);
       await expect(page.locator('html'), `${label}: no desktop CSS flag`).not.toHaveAttribute(
-        'data-flo-desktop-titlebar',
+        'data-senova-pos-titlebar',
       );
 
       // Unchanged layout contract: the CSS variable that offsets fixed app

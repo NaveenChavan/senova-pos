@@ -90,7 +90,7 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/matrix" && cd "$RUNNER_TEMP/matrix"
           curl -sSL -o "setup-N.exe" \
-            "https://github.com/FreeOpenSourcePOS/FloCafe/releases/download/${FROM_VERSION}/flocafe-${FROM_VERSION}-win-x64.exe"
+            "https://github.com/SenovaDigitalLabs/senova-pos/releases/download/${FROM_VERSION}/senova-pos-${FROM_VERSION}-win-x64.exe"
           ls -la setup-N.exe
           # Git Bash path-converts the leading slash in NSIS switches unless
           # disabled, which would leave the assisted installer waiting for UI
@@ -100,11 +100,11 @@ jobs:
           APP_DIR=""
           for _ in $(seq 1 60); do
             APP_DIR=$(find "$LOCALAPPDATA/Programs" -maxdepth 1 -iname "*flo*" -type d 2>/dev/null | head -1)
-            [ -n "$APP_DIR" ] && [ -f "$APP_DIR/Flo Cafe.exe" ] && break
+            [ -n "$APP_DIR" ] && [ -f "$APP_DIR/SENOVA POS.exe" ] && break
             sleep 2
           done
-          [ -f "$APP_DIR/Flo Cafe.exe" ] || { ls "$LOCALAPPDATA/Programs"; exit 1; }
-          echo "FLO_EXE=$APP_DIR/Flo Cafe.exe" >> "$GITHUB_ENV"
+          [ -f "$APP_DIR/SENOVA POS.exe" ] || { ls "$LOCALAPPDATA/Programs"; exit 1; }
+          echo "FLO_EXE=$APP_DIR/SENOVA POS.exe" >> "$GITHUB_ENV"
           echo "FLO_APP_DIR=$APP_DIR" >> "$GITHUB_ENV"
 
       - name: Apply isolated beta-channel fixture to pre-toggle N
@@ -154,7 +154,7 @@ jobs:
           fi
           # Keep fixture credentials in shell locals; GitHub's step env dump
           # must not print credential-like names and values into public logs.
-          MATRIX_EMAIL=matrix-bot@flocafe.invalid
+          MATRIX_EMAIL=matrix-bot@senovadigitallabs.invalid
           MATRIX_PASSWORD=Upgrade-Matrix-468x
           MATRIX_PIN=4681
           export FLO_STATUS_LOG="$RUNNER_TEMP/update-status.log"
@@ -182,7 +182,7 @@ jobs:
           # quitAndInstall hands off to the staged installer; give it time,
           # then require both a live app process and the API back up.
           for _ in $(seq 1 120); do
-            RUNNING=$(powershell -NoProfile -Command "(Get-Process 'Flo Cafe' -ErrorAction SilentlyContinue).Count" | tr -d '\r')
+            RUNNING=$(powershell -NoProfile -Command "(Get-Process 'SENOVA POS' -ErrorAction SilentlyContinue).Count" | tr -d '\r')
             if [ "${RUNNING:-0}" -ge 1 ] && curl -sf http://127.0.0.1:3001/api/health >/dev/null 2>&1; then
               echo "upgraded app is back up"; exit 0
             fi
@@ -202,7 +202,7 @@ jobs:
 
       - name: Updater log analysis + process-tree check
         run: |
-          LOG="$APPDATA/flo-desktop/logs/main.log"
+          LOG="$APPDATA/senova-pos/logs/main.log"
           {
             echo "## Differential-vs-full download evidence"
             grep -iE "differential|full download|Downloading update|blockmap" "$LOG" | tail -20
@@ -211,10 +211,10 @@ jobs:
           } | tee "$RUNNER_TEMP/log-analysis.txt"
           {
             echo "## Process tree after relaunch"
-            powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name='Flo Cafe.exe'\" | Select-Object ProcessId,ParentProcessId,CommandLine | Format-List"
+            powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name='SENOVA POS.exe'\" | Select-Object ProcessId,ParentProcessId,CommandLine | Format-List"
           } | tee "$RUNNER_TEMP/process-tree.txt"
-          # Exactly one root Flo Cafe process (children carry --type=).
-          ROOTS=$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process -Filter \"Name='Flo Cafe.exe'\" | Where-Object { \$_.CommandLine -notmatch '--type=' }).Count" | tr -d '\r')
+          # Exactly one root SENOVA POS process (children carry --type=).
+          ROOTS=$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process -Filter \"Name='SENOVA POS.exe'\" | Where-Object { \$_.CommandLine -notmatch '--type=' }).Count" | tr -d '\r')
           echo "root processes: ${ROOTS:-0}"
           [ "${ROOTS:-0}" = "1" ] || { echo "::error::expected exactly 1 root process after relaunch"; exit 1; }
 
@@ -270,13 +270,13 @@ jobs:
       - name: Install release N
         run: |
           mkdir -p "$RUNNER_TEMP/matrix" && cd "$RUNNER_TEMP/matrix"
-          if ! curl -fsSL -o flocafe.AppImage \
-            "https://github.com/FreeOpenSourcePOS/FloCafe/releases/download/${FROM_VERSION}/flocafe-${FROM_VERSION}-${{ matrix.asset_suffix }}"; then
-            curl -fsSL -o flocafe.AppImage \
-              "https://github.com/FreeOpenSourcePOS/FloCafe/releases/download/${FROM_VERSION}/flocafe-${FROM_VERSION}-${{ matrix.legacy_asset_suffix }}"
+          if ! curl -fsSL -o senova-pos.AppImage \
+            "https://github.com/SenovaDigitalLabs/senova-pos/releases/download/${FROM_VERSION}/senova-pos-${FROM_VERSION}-${{ matrix.asset_suffix }}"; then
+            curl -fsSL -o senova-pos.AppImage \
+              "https://github.com/SenovaDigitalLabs/senova-pos/releases/download/${FROM_VERSION}/senova-pos-${FROM_VERSION}-${{ matrix.legacy_asset_suffix }}"
           fi
-          chmod +x flocafe.AppImage
-          echo "FLO_APPIMAGE=$RUNNER_TEMP/matrix/flocafe.AppImage" >> "$GITHUB_ENV"
+          chmod +x senova-pos.AppImage
+          echo "FLO_APPIMAGE=$RUNNER_TEMP/matrix/senova-pos.AppImage" >> "$GITHUB_ENV"
 
       - name: Apply offline fixture to AppImage release N
         run: |
@@ -304,7 +304,7 @@ jobs:
 
       - name: Seed data, opt into beta, wait for staged update, restart-and-install
         run: |
-          MATRIX_EMAIL=matrix-bot@flocafe.invalid
+          MATRIX_EMAIL=matrix-bot@senovadigitallabs.invalid
           MATRIX_PASSWORD=Upgrade-Matrix-468x
           MATRIX_PIN=4681
           export FLO_STATUS_LOG="$RUNNER_TEMP/update-status.log"
@@ -368,14 +368,14 @@ jobs:
 
       - name: Updater log analysis + process-tree check
         run: |
-          LOG="$HOME/.config/flo-desktop/logs/main.log"
+          LOG="$HOME/.config/senova-pos/logs/main.log"
           {
             echo "## Differential-vs-full download evidence"
             grep -iE "differential|full download|Downloading update|blockmap" "$LOG" | tail -20
             echo "## Update status transitions"
             cat "$RUNNER_TEMP/update-status.log"
             echo "## Processes after relaunch (roots only)"
-            pgrep -af 'Flo Cafe|flocafe' | grep -v -- '--type='
+            pgrep -af 'SENOVA POS|senova-pos' | grep -v -- '--type='
           } | tee "$RUNNER_TEMP/evidence-extra.txt"
 
       - name: Upload row evidence
@@ -426,9 +426,9 @@ jobs:
         run: |
           cd "$RUNNER_TEMP"
           if ! curl -fsSL -o pkg.${{ matrix.pkg }} \
-            "https://github.com/FreeOpenSourcePOS/FloCafe/releases/download/${FROM_VERSION}/flocafe-${FROM_VERSION}-${{ matrix.asset_suffix }}"; then
+            "https://github.com/SenovaDigitalLabs/senova-pos/releases/download/${FROM_VERSION}/senova-pos-${FROM_VERSION}-${{ matrix.asset_suffix }}"; then
             curl -fsSL -o pkg.${{ matrix.pkg }} \
-              "https://github.com/FreeOpenSourcePOS/FloCafe/releases/download/${FROM_VERSION}/flocafe-${FROM_VERSION}-${{ matrix.legacy_asset_suffix }}"
+              "https://github.com/SenovaDigitalLabs/senova-pos/releases/download/${FROM_VERSION}/senova-pos-${FROM_VERSION}-${{ matrix.legacy_asset_suffix }}"
           fi
           if [ "${{ matrix.pkg }}" = deb ]; then
             sudo dpkg -i pkg.deb || sudo apt-get install -y -f -qq
@@ -451,8 +451,8 @@ jobs:
 
       - name: Launch under Xvfb with a CDP port
         run: |
-          BIN=$(find /opt -maxdepth 3 -type f \( -name "Flo Cafe" -o -name flo-cafe -o -name flocafe \) 2>/dev/null | head -1)
-          if [ -z "$BIN" ] && [ "${{ matrix.pkg }}" = snap ]; then BIN="/snap/bin/flocafe"; fi
+          BIN=$(find /opt -maxdepth 3 -type f \( -name "SENOVA POS" -o -name senova-pos -o -name senova-pos \) 2>/dev/null | head -1)
+          if [ -z "$BIN" ] && [ "${{ matrix.pkg }}" = snap ]; then BIN="/snap/bin/senova-pos"; fi
           echo "binary: $BIN"
           [ -n "$BIN" ] || { find /opt /usr -maxdepth 4 -iname '*flo*' 2>/dev/null | head; exit 1; }
           xvfb-run -a "$BIN" --remote-debugging-port=9222 > app.log 2>&1 &
@@ -493,7 +493,7 @@ jobs:
           echo "update status: $STATUS"
           printf '%s\n' "$STATUS" | tee "$RUNNER_TEMP/gating-status.json" >/dev/null
           node -e "const status = JSON.parse(process.argv[1]); if (!['linux-managed', 'store-managed'].includes(status.status)) process.exit(1);" "$STATUS"
-          LOG=$(ls "$HOME/.config/flo-desktop/logs/main.log" 2>/dev/null || true)
+          LOG=$(ls "$HOME/.config/senova-pos/logs/main.log" 2>/dev/null || true)
           if [ -n "$LOG" ]; then
             grep -F "Linux non-AppImage install — updates managed by package manager" "$LOG" | tail -3 | tee "$RUNNER_TEMP/gating-log.txt"
             ! grep -qiE "Downloading update|beta.yml|latest.yml" "$LOG" || { echo "::error::package-manager install attempted a self-update"; exit 1; }
@@ -528,7 +528,7 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/matrix" && cd "$RUNNER_TEMP/matrix"
           curl -sSL -o "setup-old.exe" \
-            "https://github.com/FreeOpenSourcePOS/FloCafe/releases/download/${OLD_VERSION}/Flo.Cafe.Setup.${OLD_VERSION}.exe"
+            "https://github.com/SenovaDigitalLabs/senova-pos/releases/download/${OLD_VERSION}/SENOVA POS.Cafe.Setup.${OLD_VERSION}.exe"
           # Keep the NSIS /S switch intact when invoking the Windows binary
           # from Git Bash; otherwise the silent installer waits for UI input.
           MSYS_NO_PATHCONV=1 ./setup-old.exe /S
@@ -557,7 +557,7 @@ jobs:
 
       - name: Resolve stable target before seeding
         run: |
-          TARGET=$(curl -fsSL -H "Accept: application/vnd.github+json" https://api.github.com/repos/FreeOpenSourcePOS/FloCafe/releases/latest \
+          TARGET=$(curl -fsSL -H "Accept: application/vnd.github+json" https://api.github.com/repos/SenovaDigitalLabs/senova-pos/releases/latest \
             | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).tag_name))")
           [ -n "$TARGET" ] || { echo "::error::stable release target is empty"; exit 1; }
           echo "TARGET_VERSION=$TARGET" >> "$GITHUB_ENV"
@@ -565,7 +565,7 @@ jobs:
 
       - name: Seed data and let the stable feed stage the current stable release
         run: |
-          MATRIX_EMAIL=matrix-bot@flocafe.invalid
+          MATRIX_EMAIL=matrix-bot@senovadigitallabs.invalid
           MATRIX_PASSWORD=Upgrade-Matrix-468x
           MATRIX_PIN=4681
           export FLO_STATUS_LOG="$RUNNER_TEMP/update-status.log"

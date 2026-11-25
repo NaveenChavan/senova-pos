@@ -56,7 +56,7 @@ export function PaymentTicketConfirmationModal({
     }
   };
 
-  const ticketPayload = qrPayload || `FLOCAFE-TICKET:${order.order_number}`;
+  const ticketPayload = qrPayload || `SENOVA-TICKET:${order.order_number}`;
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>

@@ -1,7 +1,7 @@
 {
-  "name": "flo-desktop",
+  "name": "senova-pos",
   "version": "3.13.61",
-  "description": "Free, open-source, offline-first restaurant POS with KDS, SQLite, and thermal printer support.",
+  "description": "Offline-first Point of Sale by SENOVA Digital Labs",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -370,16 +370,16 @@
     "test:printer-text-size": "ts-node --transpile-only -P tests/tsconfig.json tests/printer-text-size.test.ts && node tests/run-electron-node-test.cjs tests/migration-printer-text-size.test.ts"
   },
   "author": {
-    "name": "Flo",
-    "email": "support@flo.local"
+    "name": "Naveen Chavan & Shrihari S - SENOVA Digital Labs",
+    "email": "info@senovadigital.xyz"
   },
-  "homepage": "https://flopos.com",
+  "homepage": "https://www.senovadigital.xyz/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FreeOpenSourcePOS/FloCafe.git"
+    "url": "https://github.com/SenovaDigitalLabs/senova-pos.git"
   },
   "bugs": {
-    "url": "https://github.com/FreeOpenSourcePOS/FloCafe/issues"
+    "url": "https://github.com/SenovaDigitalLabs/senova-pos/issues"
   },
   "license": "MIT",
   "overrides": {
@@ -454,8 +454,8 @@
     "ws": "^8.22.1"
   },
   "build": {
-    "appId": "com.flo.desktop",
-    "productName": "Flo Cafe",
+    "appId": "com.senovadigitallabs.pos",
+    "productName": "SENOVA POS",
     "icon": "assets/icon-512.png",
     "afterPack": "scripts/afterPack.js",
     "asar": true,
@@ -470,8 +470,8 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "FreeOpenSourcePOS",
-      "repo": "FloCafe",
+      "owner": "SenovaDigitalLabs",
+      "repo": "senova-pos",
       "releaseType": "release",
       "channel": "latest"
     },
@@ -504,15 +504,15 @@
         }
       ],
       "icon": "assets/icon.ico",
-      "artifactName": "flocafe-${version}-win-${arch}.${ext}"
+      "artifactName": "senova-pos-${version}-win-${arch}.${ext}"
     },
     "appx": {
-      "applicationId": "FloCafe",
+      "applicationId": "SenovaPOS",
       "backgroundColor": "#1e1e2e",
       "publisherDisplayName": "Codify Apps Private Limited",
-      "identityName": "CodifyAppsPrivateLimited.FloCafe",
+      "identityName": "CodifyAppsPrivateLimited.SenovaPOS",
       "publisher": "CN=34AFD24D-EC88-44B8-B309-08BB8A6BB5F7",
-      "displayName": "Flo Cafe",
+      "displayName": "SENOVA POS",
       "languages": [
         "en-US"
       ]
@@ -542,9 +542,9 @@
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "notarize": true,
-      "artifactName": "flocafe-${version}-mac-${arch}.${ext}",
+      "artifactName": "senova-pos-${version}-mac-${arch}.${ext}",
       "extendInfo": {
-        "NSLocalNetworkUsageDescription": "Flo Cafe connects to thermal printers, KDS displays, and the Waiter & Table Terminal on your local network.",
+        "NSLocalNetworkUsageDescription": "SENOVA POS connects to thermal printers, KDS displays, and the Waiter & Table Terminal on your local network.",
         "NSBonjourServices": [
           "_http._tcp",
           "_pdl-datastream._tcp",
@@ -565,7 +565,7 @@
       "type": "distribution",
       "extendInfo": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSLocalNetworkUsageDescription": "Flo Cafe connects to thermal printers, KDS displays, and the Waiter & Table Terminal on your local network.",
+        "NSLocalNetworkUsageDescription": "SENOVA POS connects to thermal printers, KDS displays, and the Waiter & Table Terminal on your local network.",
         "NSBonjourServices": [
           "_http._tcp",
           "_pdl-datastream._tcp",
@@ -586,7 +586,7 @@
     },
     "linux": {
       "synopsis": "Self-hosted Point of Sale for cafes and restaurants",
-      "description": "Flo is a free, open-source point-of-sale system for cafes, restaurants, and small kitchens. Local-first, offline-capable, no cloud lock-in, no per-seat fees.",
+      "description": "SENOVA POS is a free, open-source point-of-sale system for cafes, restaurants, and small kitchens. Local-first, offline-capable, no cloud lock-in, no per-seat fees.",
       "target": [
         {
           "target": "AppImage",
@@ -619,12 +619,12 @@
       ],
       "icon": "assets",
       "category": "Office",
-      "executableName": "flocafe",
-      "artifactName": "flocafe-${version}-linux.${ext}",
+      "executableName": "senova-pos",
+      "artifactName": "senova-pos-${version}-linux.${ext}",
       "extraFiles": [
         {
-          "from": "assets/com.flo.desktop.metainfo.xml",
-          "to": "usr/share/metainfo/com.flo.desktop.metainfo.xml"
+          "from": "assets/com.senovadigitallabs.pos.metainfo.xml",
+          "to": "usr/share/metainfo/com.senovadigitallabs.pos.metainfo.xml"
         },
         {
           "from": "assets/icons",
@@ -633,16 +633,16 @@
       ],
       "desktop": {
         "entry": {
-          "Name": "Flo Cafe",
+          "Name": "SENOVA POS",
           "Comment": "Free, open-source POS for cafes and restaurants",
           "GenericName": "Point of Sale",
           "Keywords": "pos;point of sale;restaurant;cafe;billing;invoice;",
-          "StartupWMClass": "flo-desktop"
+          "StartupWMClass": "senova-pos"
         }
       }
     },
     "appImage": {
-      "artifactName": "flocafe-${version}-linux.appimage"
+      "artifactName": "senova-pos-${version}-linux.appimage"
     },
     "snapcraft": {
       "base": "core24",

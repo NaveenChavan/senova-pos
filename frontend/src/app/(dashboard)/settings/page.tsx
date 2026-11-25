@@ -7229,14 +7229,17 @@ export default function SettingsPage() {
           <TabsContent value="about">
             <SettingsTabShell>
               <div
-                data-setting-section="about-flocafe"
+                data-setting-section="about-senova-pos"
                 className="bg-card rounded-xl border border-border p-6"
               >
-                <h2 className="font-semibold text-foreground mb-4">{t('aboutFloCafe')}</h2>
-                <p className="text-sm text-muted-foreground mb-6">{t('aboutDescription')}</p>
+                <h2 className="font-semibold text-foreground mb-4">{t('aboutSenovaPos')}</h2>
+                <p className="text-sm text-muted-foreground mb-3">{t('aboutDescription')}</p>
+                <p className="text-sm font-semibold text-foreground mb-6">
+                  {t('aboutDevelopedBy')}
+                </p>
                 <div className="space-y-3">
                   <a
-                    href="https://github.com/FreeOpenSourcePOS/FloCafe"
+                    href="https://github.com/SenovaDigitalLabs/senova-pos"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-brand hover:underline"
@@ -7258,7 +7261,7 @@ export default function SettingsPage() {
                     {t('aboutGithub')}
                   </a>
                   <a
-                    href="https://flopos.com/"
+                    href="https://www.senovadigital.xyz/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-brand hover:underline"

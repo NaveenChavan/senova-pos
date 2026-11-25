@@ -116,7 +116,7 @@ async function run(): Promise<void> {
     unmanagedResult,
     {
       success: false,
-      error: 'Restore source must be a Flo-managed backup file',
+      error: 'Restore source must be a SENOVA POS-managed backup file',
     },
     'IPC rejects unmanaged external database path',
   );
@@ -127,7 +127,7 @@ async function run(): Promise<void> {
     invalidNameResult,
     {
       success: false,
-      error: 'Restore source must be a Flo-managed backup file',
+      error: 'Restore source must be a SENOVA POS-managed backup file',
     },
     'IPC rejects unmanaged filename inside backups directory',
   );
@@ -143,7 +143,7 @@ async function run(): Promise<void> {
       symlinkResult,
       {
         success: false,
-        error: 'Restore source must be a Flo-managed backup file',
+        error: 'Restore source must be a SENOVA POS-managed backup file',
       },
       'IPC rejects symlink escaping backups directory',
     );
@@ -234,7 +234,11 @@ async function run(): Promise<void> {
   }
   messageBoxCalls.length = 0;
   const legacyRestore = await restoreHandler(trustedSender, '1234', legacyManaged);
-  assert.equal(legacyRestore.success, true, 'IPC restores an older backup without Flo metadata');
+  assert.equal(
+    legacyRestore.success,
+    true,
+    'IPC restores an older backup without SENOVA POS metadata',
+  );
   assert.equal(
     messageBoxCalls.length,
     1,

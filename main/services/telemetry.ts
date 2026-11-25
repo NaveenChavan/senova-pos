@@ -19,7 +19,7 @@ import { getBuildIdentity } from './build-identity';
 import { getOfflineModeAbortSignal, isOfflineMode, onOfflineModeEnabled } from './offline-mode';
 import { postHogNetworkSuppressed } from './posthog-config';
 
-export const TELEMETRY_URL = 'https://telemetry.flopos.com/collect';
+export const TELEMETRY_URL = 'https://telemetry.senovadigitallabs.example/collect';
 
 /** How this instance was launched, so a merchant install is distinguishable from a developer's run. */
 export type RunMode = 'packaged' | 'dev';
@@ -192,7 +192,7 @@ async function sendEventImpl(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         anon_id: anonId,
-        app: 'flocafe',
+        app: 'senova-pos',
         app_version: electronApp()?.getVersion?.() ?? '0.0.0',
         event_type: eventType,
         platform: process.platform,
@@ -210,13 +210,13 @@ async function sendEventImpl(
     }
     const ok = response.ok;
     if (!ok) {
-      log.debug(`[Flo] telemetry rejected with HTTP ${response.status}`);
+      log.debug(`[SENOVA POS] telemetry rejected with HTTP ${response.status}`);
     }
     await response.body?.cancel().catch(() => {});
     return ok;
   } catch (e) {
     // Telemetry must never disrupt the app or surface to the user.
-    log.debug('[Flo] telemetry send failed (non-fatal):', e);
+    log.debug('[SENOVA POS] telemetry send failed (non-fatal):', e);
     return false;
   }
 }
@@ -378,7 +378,7 @@ export async function sendAnonymousDiagnosticReport(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         anon_id: anonId,
-        app: 'flocafe',
+        app: 'senova-pos',
         app_version: electronApp()?.getVersion?.() ?? '0.0.0',
         app_build: build,
         event_type: 'diagnostic_counts',

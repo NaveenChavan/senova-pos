@@ -135,7 +135,7 @@ Lifecycle rules before and at release:
 
 ## Multi-counter ordering (create here, pay there)
 
-FloCafe supports owner-configured multi-counter ordering (`multi_counter_enabled`, disabled by
+SENOVA POS supports owner-configured multi-counter ordering (`multi_counter_enabled`, disabled by
 default). In this workflow, separate physical terminals act as ordering stations, payment cashiers,
 or combined stations:
 
@@ -177,7 +177,7 @@ or combined stations:
 - **Shared LAN queue and QR ticket identification.** Terminals retrieve tickets via
   `GET /api/orders/awaiting-payment` (cursor-paginated with counts) or lookup by ticket/order number
   via `GET /api/orders/by-ticket/:ticket`. Tickets display a human-readable number and QR code
-  (`FLOCAFE-TICKET:<order_number>`), which carries zero authentication or payment authority, and can
+  (`SENOVA-TICKET:<order_number>`), which carries zero authentication or payment authority, and can
   be printed as a thermal ticket slip (`POST /api/printers/print-payment-ticket`).
 
 ## Discounts

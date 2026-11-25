@@ -12,7 +12,7 @@ const SOURCE =
 const OUT = path.join(__dirname, '../main/printers/escpos-printer-db.json');
 // Catch-all vendor profiles; real models are what the fallback lookup wants.
 const SKIP_IDS = new Set(['default', 'safe', 'simple']);
-// ESC t numbers FloCafe sends per page (shared/print/thermal-capabilities.ts).
+// ESC t numbers SENOVA POS sends per page (shared/print/thermal-capabilities.ts).
 // A DB page is only usable when the printer's own index matches our number.
 const CODE_PAGE_IDS = { cp437: 0, cp850: 2, windows1252: 16, cp858: 19 };
 const MIN_FONT_A_COLUMNS = 24;

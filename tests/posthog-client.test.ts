@@ -288,7 +288,11 @@ async function main() {
     token: 'phc',
   });
   assert.equal(alias(goodAlias, false), null, 'aliases follow telemetry');
-  assert.equal(alias({ ...goodAlias, alias: 'ada@example.com' }), null, 'only FloCafe ids alias');
+  assert.equal(
+    alias({ ...goodAlias, alias: 'ada@example.com' }),
+    null,
+    'only SENOVA POS ids alias',
+  );
 
   const throttle = createScreenViewThrottle(1_000);
   assert.deepEqual(throttle('a|/pos/', 0), { send: true, repeatViews: 0 });
@@ -303,8 +307,8 @@ async function main() {
   assert.equal(screenKey('/orders/', 'kds'), '/orders/');
 
   assert.deepEqual(
-    shellArgs(['--directory', 'C:\\a b\\out', 'flocafe'], 'win32'),
-    ['--directory', '"C:\\a b\\out"', 'flocafe'],
+    shellArgs(['--directory', 'C:\\a b\\out', 'senova-pos'], 'win32'),
+    ['--directory', '"C:\\a b\\out"', 'senova-pos'],
     'Windows paths with spaces stay one argument',
   );
   assert.deepEqual(shellArgs(['--directory', '/a b/out'], 'darwin'), ['--directory', '/a b/out']);
@@ -418,7 +422,7 @@ async function main() {
               frames: [
                 { filename: '/Users/ada/node_modules/leftpad/index.js', lineno: 1, colno: 1 },
                 {
-                  filename: '/Users/ada/FloCafe/main/index.ts',
+                  filename: '/Users/ada/SENOVA POS/main/index.ts',
                   function: 'placeOrder',
                   lineno: 4,
                   colno: 2,
@@ -944,7 +948,7 @@ async function main() {
   );
   assert.equal(
     installRef,
-    createHash('sha256').update(`flocafe-install:${installSeed}`).digest('hex').slice(0, 16),
+    createHash('sha256').update(`senova-pos-install:${installSeed}`).digest('hex').slice(0, 16),
     'the device id is derived from the stored random seed',
   );
   assert.equal(readInstallRef(), installRef);

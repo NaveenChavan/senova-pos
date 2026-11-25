@@ -268,11 +268,11 @@ body:has(.flo-title-bar__fallback-controls) .flo-title-bar__safe-area {
 }
 
 /* Under Electron the fixed app sidebar must start below the custom title bar
- * instead of sliding beneath it. data-flo-desktop-titlebar is set on <html>
+ * instead of sliding beneath it. data-senova-pos-titlebar is set on <html>
  * only when window.electronAPI exists (TitleBar.tsx), so browser/LAN keeps
  * the viewport-top geometry (--flo-sidebar-block-start stays 0px). Block-axis
  * logical properties are direction-independent, keeping RTL correct. */
-html[data-flo-desktop-titlebar='true'] {
+html[data-senova-pos-titlebar='true'] {
   --flo-sidebar-block-start: var(--flo-titlebar-height);
 }
 

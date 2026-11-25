@@ -46,8 +46,14 @@ module.exports = async function afterPack(context) {
 
   // ── Linux: copy AppStream metainfo to standard system path ────
   if (packager.platform.name === 'linux') {
-    const metainfoSrc = path.join(packager.projectDir, 'assets/com.flo.desktop.metainfo.xml');
-    const metainfoDest = path.join(appOutDir, 'share/metainfo/com.flo.desktop.metainfo.xml');
+    const metainfoSrc = path.join(
+      packager.projectDir,
+      'assets/com.senovadigitallabs.pos.metainfo.xml',
+    );
+    const metainfoDest = path.join(
+      appOutDir,
+      'share/metainfo/com.senovadigitallabs.pos.metainfo.xml',
+    );
     if (fs.existsSync(metainfoSrc)) {
       try {
         fs.mkdirSync(path.dirname(metainfoDest), { recursive: true });
@@ -55,7 +61,7 @@ module.exports = async function afterPack(context) {
         console.log(`→ afterPack: ✓ copied AppStream metainfo.xml`);
       } catch (error) {
         throw new Error(
-          `afterPack: failed to copy metainfo from ${metainfoSrc} to ${metainfoDest}: ${error instanceof Error ? error.message : String(error)}`
+          `afterPack: failed to copy metainfo from ${metainfoSrc} to ${metainfoDest}: ${error instanceof Error ? error.message : String(error)}`,
         );
       }
     }
@@ -76,7 +82,7 @@ module.exports = async function afterPack(context) {
   const packagedBinaries = findNativeBinaries(appOutDir);
   // Prefer binaries inside app.asar.unpacked (where electron-builder puts them)
   const unpackedBinaries = packagedBinaries.filter((candidate) =>
-    candidate.includes(`${path.sep}app.asar.unpacked${path.sep}`)
+    candidate.includes(`${path.sep}app.asar.unpacked${path.sep}`),
   );
 
   // Pick the best candidate: prefer the platform-specific prebuild, then any
@@ -90,10 +96,12 @@ module.exports = async function afterPack(context) {
     const inspection = spawnSync('file', [packagedBinary], { encoding: 'utf8' });
     if (inspection.status !== 0 || !inspection.stdout.includes(expectedMachArch)) {
       throw new Error(
-        `packaged better-sqlite3 binary has unexpected architecture for darwin-${archName}: ${inspection.stdout || inspection.stderr}`
+        `packaged better-sqlite3 binary has unexpected architecture for darwin-${archName}: ${inspection.stdout || inspection.stderr}`,
       );
     }
-    console.log(`→ afterPack: ✓ validated darwin-${archName} better-sqlite3 binary at ${packagedBinary}`);
+    console.log(
+      `→ afterPack: ✓ validated darwin-${archName} better-sqlite3 binary at ${packagedBinary}`,
+    );
     return;
   }
 
@@ -101,9 +109,15 @@ module.exports = async function afterPack(context) {
   // prebuild under a different path. Do not accept a host binary silently.
   const sourceRoot = path.join(packager.projectDir, 'node_modules', 'better-sqlite3');
   const sourceBinaries = findNativeBinaries(sourceRoot);
-  console.error(`→ afterPack: packaged better-sqlite3 binary search (${appOutDir}):`, packagedBinaries);
-  console.error(`→ afterPack: project better-sqlite3 binary search (${sourceRoot}):`, sourceBinaries);
+  console.error(
+    `→ afterPack: packaged better-sqlite3 binary search (${appOutDir}):`,
+    packagedBinaries,
+  );
+  console.error(
+    `→ afterPack: project better-sqlite3 binary search (${sourceRoot}):`,
+    sourceBinaries,
+  );
   throw new Error(
-    `packaged better-sqlite3 native binary not found for darwin-${archName} under ${appOutDir}`
+    `packaged better-sqlite3 native binary not found for darwin-${archName} under ${appOutDir}`,
   );
 };

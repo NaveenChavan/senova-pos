@@ -1819,7 +1819,7 @@ router.get(
     try {
       const db = getDatabase();
       const rawTicket = String(req.params.ticket || '').trim();
-      const cleanTicket = rawTicket.replace(/^FLOCAFE-TICKET:/i, '').trim();
+      const cleanTicket = rawTicket.replace(/^SENOVA-TICKET:/i, '').trim();
 
       if (!cleanTicket) {
         return res.status(400).json({ error: 'Ticket number is required' });
@@ -2142,7 +2142,7 @@ router.post(
           const qrPayload =
             replayed.qr_payload ??
             (replayedOrder?.dispatch_policy === 'on_payment'
-              ? `FLOCAFE-TICKET:${replayedOrder.order_number}`
+              ? `SENOVA-TICKET:${replayedOrder.order_number}`
               : null);
           let qrDataUrl = replayed.qr_data_url ?? null;
           if (qrPayload && !qrDataUrl) {
@@ -2785,7 +2785,7 @@ router.post(
 
       const qrPayload =
         result.order?.dispatch_policy === 'on_payment'
-          ? `FLOCAFE-TICKET:${result.order.order_number}`
+          ? `SENOVA-TICKET:${result.order.order_number}`
           : null;
       let qrDataUrl: string | null = null;
       if (qrPayload) {

@@ -30,7 +30,7 @@ import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
 
-process.env.FLOCAFE_TEST_VERBOSE = '1';
+process.env.SENOVA_TEST_VERBOSE = '1';
 
 const Module = require('module');
 const originalLoad = Module._load;

@@ -1,4 +1,4 @@
-# git-cliff configuration for FloCafe
+# git-cliff configuration for SENOVA POS
 # https://git-cliff.org/docs/configuration
 
 [changelog]
@@ -6,7 +6,7 @@
 header = """
 # Changelog
 
-All notable changes to Flo Cafe are documented here. Dates are release dates, not commit dates. Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
+All notable changes to SENOVA POS are documented here. Dates are release dates, not commit dates. Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 """
 # template for the changelog body
 body = """

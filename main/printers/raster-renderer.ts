@@ -23,7 +23,7 @@ const MAX_RENDER_TIMEOUT_MS = 2_147_483_647;
 
 /** Self-contained page with no navigation, network access, or Node integration. */
 export function rasterRendererHtml(): string {
-  return `<!doctype html><meta charset="utf-8"><title>Flo raster surface</title>
+  return `<!doctype html><meta charset="utf-8"><title>SENOVA POS raster surface</title>
 <style>html,body{margin:0;padding:0;background:#fff}canvas{display:block}</style>
 <script>
 const paintRasterRequest = ${paintRasterRequest.toString()};

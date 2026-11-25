@@ -392,7 +392,7 @@ async function main(): Promise<void> {
     process.env.FLO_WHATSAPP_FAST_DELAY = '1';
     const db = getDatabase();
     db.prepare(
-      "INSERT OR REPLACE INTO settings (key, value) VALUES ('country', 'US'), ('currency', 'USD'), ('timezone', 'UTC'), ('business_name', 'Flo Test Cafe'), ('instagram_handle', '@flotestcafe')",
+      "INSERT OR REPLACE INTO settings (key, value) VALUES ('country', 'US'), ('currency', 'USD'), ('timezone', 'UTC'), ('business_name', 'SENOVA POS Test Cafe'), ('instagram_handle', '@flotestcafe')",
     ).run();
 
     // 1. Placeholder interpolation (renderWhatsAppTemplate) across customer, bill, loyalty, and store fields
@@ -412,9 +412,9 @@ async function main(): Promise<void> {
         points_earned: 40,
         points_balance: 240,
         points_value: '₹240.00',
-        store_name: 'Flo Bistro',
+        store_name: 'SENOVA POS Bistro',
         store_phone: '+919800000000',
-        feedback_link: 'https://flocafe.example.com/review',
+        feedback_link: 'https://senova-pos.example.com/review',
         instagram: '@flobistro',
       },
     );
@@ -425,7 +425,7 @@ async function main(): Promise<void> {
         interpolated.includes('2x Latte - ₹400.00') &&
         interpolated.includes('Total: ₹400.00 via UPI. Earned 40, Balance 240 (₹240.00)') &&
         interpolated.includes(
-          'Store: Flo Bistro +919800000000 https://flocafe.example.com/review @flobistro',
+          'Store: SENOVA POS Bistro +919800000000 https://senova-pos.example.com/review @flobistro',
         ),
       'renderWhatsAppTemplate interpolates all 16 placeholders and prevents recursive placeholder injection',
     );
@@ -506,7 +506,7 @@ async function main(): Promise<void> {
         quietHoursStart: '22:00',
         quietHoursEnd: '09:00',
         maxPerCustomerPerWeek: 2,
-        feedbackLink: 'https://flocafe.example.com/feedback',
+        feedbackLink: 'https://senova-pos.example.com/feedback',
       },
     });
     const RealDate = globalThis.Date;
@@ -561,7 +561,7 @@ async function main(): Promise<void> {
         quietHoursStart: '22:00',
         quietHoursEnd: '09:00',
         maxPerCustomerPerWeek: 2,
-        feedbackLink: 'https://flocafe.example.com/feedback',
+        feedbackLink: 'https://senova-pos.example.com/feedback',
       },
     });
     const autoSend1 = await whatsapp.sendMessage({
@@ -635,7 +635,7 @@ async function main(): Promise<void> {
         quietHoursStart: '22:00',
         quietHoursEnd: '09:00',
         maxPerCustomerPerWeek: 10,
-        feedbackLink: 'https://flocafe.example.com/feedback',
+        feedbackLink: 'https://senova-pos.example.com/feedback',
       },
       rules: [
         { id: 'after_payment', trigger: 'after_payment', enabled: true, templateId: 'receipt' },
@@ -844,7 +844,7 @@ async function main(): Promise<void> {
         quietHoursStart: '22:00',
         quietHoursEnd: '09:00',
         maxPerCustomerPerWeek: 10,
-        feedbackLink: 'https://flocafe.example.com/feedback',
+        feedbackLink: 'https://senova-pos.example.com/feedback',
       },
       rules: [
         { id: 'after_payment', trigger: 'after_payment', enabled: false, templateId: 'receipt' },

@@ -125,7 +125,7 @@ test('Batch 5D: KDS and Server App render and function correctly in English and 
     // 1e. Server App Login Form (EN)
     await page.goto(`${BASE_SERVER_APP}/server-standalone`);
     await page.evaluate(() => {
-      localStorage.removeItem('flocafe:server-app-token');
+      localStorage.removeItem('senova:server-app-token');
     });
     await page.goto(`${BASE_SERVER_APP}/server-standalone`);
     await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
@@ -139,7 +139,7 @@ test('Batch 5D: KDS and Server App render and function correctly in English and 
 
     // Authenticate Server App
     await page.evaluate((tok) => {
-      localStorage.setItem('flocafe:server-app-token', tok);
+      localStorage.setItem('senova:server-app-token', tok);
     }, serverToken);
     await page.reload();
 
@@ -235,7 +235,7 @@ test('Batch 5D: KDS and Server App render and function correctly in English and 
     // 2e. Server App Login Form (FA)
     await page.goto(`${BASE_SERVER_APP}/server-standalone`);
     await page.evaluate(() => {
-      localStorage.removeItem('flocafe:server-app-token');
+      localStorage.removeItem('senova:server-app-token');
     });
     await page.goto(`${BASE_SERVER_APP}/server-standalone`);
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
@@ -249,7 +249,7 @@ test('Batch 5D: KDS and Server App render and function correctly in English and 
 
     // Authenticate Server App in FA
     await page.evaluate((tok) => {
-      localStorage.setItem('flocafe:server-app-token', tok);
+      localStorage.setItem('senova:server-app-token', tok);
     }, serverToken);
     await page.reload();
 

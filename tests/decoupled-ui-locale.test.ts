@@ -622,7 +622,7 @@ async function runTests() {
     (globalThis as any).window = originalWindow;
   }
 
-  // Connected Flo sends must use the same active UI locale as browser shares.
+  // Connected SENOVA POS sends must use the same active UI locale as browser shares.
   const originalPost = whatsappApi.post;
   let sentBody: Record<string, unknown> | undefined;
   whatsappApi.post = async (_url: string, body: Record<string, unknown>) => {
@@ -641,10 +641,10 @@ async function runTests() {
   } finally {
     whatsappApi.post = originalPost;
   }
-  assert.ok(typeof sentBody?.body === 'string', 'Expected connected Flo request body');
+  assert.ok(typeof sentBody?.body === 'string', 'Expected connected SENOVA POS request body');
   assert.ok(
     String(sentBody?.body).includes('Aug'),
-    `Expected English date in connected Flo message, got: ${sentBody?.body}`,
+    `Expected English date in connected SENOVA POS message, got: ${sentBody?.body}`,
   );
 
   // Build WhatsApp preview artifact
@@ -715,7 +715,7 @@ async function runTests() {
   </style>
 </head>
 <body>
-  <div class="header-title">FloCafe - WhatsApp Share Receipt Localization</div>
+  <div class="header-title">SENOVA POS - WhatsApp Share Receipt Localization</div>
   <div class="subtitle">Demonstrates date and currency formatting decoupled from tenant country (Argentina Store with ARS) across UI Locales</div>
 
   <div class="chat-grid">
@@ -1065,7 +1065,7 @@ async function runTests() {
   <div class="header">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <div class="title">
-        <span>FloCafe Architecture Boundary Verification</span>
+        <span>SENOVA POS Architecture Boundary Verification</span>
         <span class="badge">i18n Decoupling</span>
       </div>
       <div class="status-badge">

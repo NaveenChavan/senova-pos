@@ -120,7 +120,7 @@ console.log('\n▶ Block construction (fixture bill)');
   ok('canonical ordered blocks');
 
   const header = blockOf(document, 'business-header');
-  assert.equal(header.name?.text, 'Flo Parity Cafe');
+  assert.equal(header.name?.text, 'SNV Parity Cafe');
   assert.equal(header.address?.text, '12 Marina Boulevard');
   assert.equal(header.taxId?.value.text, 'GSTIN123456');
   assert.equal(header.taxId?.label.primary, 'GSTIN', 'tax id label comes from the country profile');
@@ -1371,7 +1371,7 @@ console.log('\n▶ Large bold Order Number banner on customer receipts');
   };
   const feTenant: any = {
     id: 1,
-    business_name: 'FloCafe Test',
+    business_name: 'SENOVA POS Test',
     country: 'IN',
     currency: 'INR',
     timezone: 'Asia/Kolkata',

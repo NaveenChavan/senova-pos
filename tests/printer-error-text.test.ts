@@ -1,5 +1,5 @@
 /**
- * Printer error text is the most identifying string FloCafe sends: CUPS names the queue, IPP names
+ * Printer error text is the most identifying string SENOVA POS sends: CUPS names the queue, IPP names
  * the host, and both name the person's home folder. These are the strings the printer code really
  * produces, with the identifiers a stranger must not see.
  */
@@ -18,7 +18,7 @@ const cases: Array<{ name: string; text: string; keeps: string[] }> = [
   },
   {
     name: 'CUPS queue missing, from the IPP status',
-    text: `Printer queue "${QUEUE}" was not found in macOS Printers & Scanners. Add the USB printer in System Settings > Printers & Scanners and make sure the printer name in FloCafe matches the CUPS queue name.`,
+    text: `Printer queue "${QUEUE}" was not found in macOS Printers & Scanners. Add the USB printer in System Settings > Printers & Scanners and make sure the printer name in SENOVA POS matches the CUPS queue name.`,
     keeps: ['was not found', 'CUPS queue name'],
   },
   {
@@ -43,7 +43,7 @@ const cases: Array<{ name: string; text: string; keeps: string[] }> = [
   },
   {
     name: 'Windows spooler via PowerShell',
-    text: `Exception calling "Add-Type" with "1" argument(s): "Cannot find path 'C:\\Users\\ada\\AppData\\Local\\Temp\\flocafe-print-4711.bin' because it does not exist."`,
+    text: `Exception calling "Add-Type" with "1" argument(s): "Cannot find path 'C:\\Users\\ada\\AppData\\Local\\Temp\\senova-pos-print-4711.bin' because it does not exist."`,
     keeps: ['Cannot find path', 'because it does not exist'],
   },
   {
@@ -58,7 +58,7 @@ const cases: Array<{ name: string; text: string; keeps: string[] }> = [
   },
   {
     name: 'user home folder on Linux',
-    text: 'lp: Unable to open /home/ada/.config/flocafe/print.bin - Permission denied',
+    text: 'lp: Unable to open /home/ada/.config/senova-pos/print.bin - Permission denied',
     keeps: ['Unable to open', 'Permission denied'],
   },
   {

@@ -93,7 +93,7 @@ Module._load = function (request: string, parent: unknown, isMain: boolean) {
           isPackaged: true,
           getPath: () => testDir,
           getVersion: () => 'test',
-          getName: () => 'FloCafe',
+          getName: () => 'SENOVA POS',
           whenReady: () => rawElectron.app.whenReady(),
           isReady: () => rawElectron.app.isReady(),
           quit: () => rawElectron.app.quit(),
@@ -111,7 +111,7 @@ Module._load = function (request: string, parent: unknown, isMain: boolean) {
         },
         printToPDF: async (opts?: Record<string, unknown>) =>
           Buffer.from(
-            `%PDF-1.4\n%FloCafe test PDF pageSize=${String(opts?.pageSize ?? '')} preferCSSPageSize=${String(opts?.preferCSSPageSize ?? '')}\n${lastLoadedHtmlContent}\n%%EOF\n`,
+            `%PDF-1.4\n%SENOVA POS test PDF pageSize=${String(opts?.pageSize ?? '')} preferCSSPageSize=${String(opts?.preferCSSPageSize ?? '')}\n${lastLoadedHtmlContent}\n%%EOF\n`,
           ),
       });
       constructor() {
@@ -138,7 +138,7 @@ Module._load = function (request: string, parent: unknown, isMain: boolean) {
         isPackaged: true,
         getPath: () => testDir,
         getVersion: () => 'test',
-        getName: () => 'FloCafe',
+        getName: () => 'SENOVA POS',
       },
       BrowserWindow: FakePrintWindow,
       ipcMain: {
@@ -631,7 +631,7 @@ async function run(): Promise<void> {
     ).run(
       'cashier-reports-export',
       'Cashier User',
-      'cashier-export@flocafe.local',
+      'cashier-export@senovadigitallabs.local',
       'hash',
       'cashier',
       1,
@@ -642,7 +642,7 @@ async function run(): Promise<void> {
       token: jwt.sign(
         {
           userId: 'cashier-reports-export',
-          email: 'cashier-export@flocafe.local',
+          email: 'cashier-export@senovadigitallabs.local',
           role: 'cashier',
         },
         getJWTSecret(),

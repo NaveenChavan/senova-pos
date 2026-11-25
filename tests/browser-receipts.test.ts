@@ -465,7 +465,7 @@ async function run() {
       payment_details: [{ method: 'cash', amount: 50.0 }],
     };
     const usTenant = {
-      business_name: 'FloCafe New York',
+      business_name: 'SENOVA POS New York',
       currency: 'USD',
       country: 'US',
       timezone: 'America/New_York',
@@ -485,7 +485,7 @@ async function run() {
 
     // Spanish
     const esTenant = {
-      business_name: 'Café Flo Madrid',
+      business_name: 'Café SENOVA POS Madrid',
       currency: 'EUR',
       country: 'ES',
       timezone: 'Europe/Madrid',
@@ -502,7 +502,7 @@ async function run() {
 
     // French
     const frTenant = {
-      business_name: 'Café Flo Paris',
+      business_name: 'Café SENOVA POS Paris',
       currency: 'EUR',
       country: 'FR',
       timezone: 'Europe/Paris',
@@ -522,7 +522,7 @@ async function run() {
 
     // Portuguese
     const ptTenant = {
-      business_name: 'Café Flo Lisboa',
+      business_name: 'Café SENOVA POS Lisboa',
       currency: 'EUR',
       country: 'PT',
       timezone: 'Europe/Lisbon',
@@ -542,7 +542,7 @@ async function run() {
 
     // Urdu
     const urTenant = {
-      business_name: 'Flo Cafe Lahore',
+      business_name: 'SENOVA POS Lahore',
       currency: 'PKR',
       country: 'PK',
       timezone: 'Asia/Karachi',
@@ -561,7 +561,7 @@ async function run() {
     );
 
     const hiTenant = {
-      business_name: 'FloCafe Delhi',
+      business_name: 'SENOVA POS Delhi',
       currency: 'INR',
       country: 'IN',
       timezone: 'Asia/Kolkata',
@@ -580,7 +580,7 @@ async function run() {
     );
 
     const sqTenant = {
-      business_name: 'FloCafe Tiranë',
+      business_name: 'SENOVA POS Tiranë',
       currency: 'ALL',
       country: 'AL',
       timezone: 'Europe/Tirane',
@@ -599,7 +599,7 @@ async function run() {
     );
 
     const neTenant = {
-      business_name: 'FloCafe Kathmandu',
+      business_name: 'SENOVA POS Kathmandu',
       currency: 'NPR',
       country: 'NP',
       timezone: 'Asia/Kathmandu',
@@ -618,7 +618,7 @@ async function run() {
     );
 
     const jvTenant = {
-      business_name: 'FloCafe Yogyakarta',
+      business_name: 'SENOVA POS Yogyakarta',
       currency: 'IDR',
       country: 'ID',
       timezone: 'Asia/Jakarta',
@@ -637,7 +637,7 @@ async function run() {
     );
 
     const mrTenant = {
-      business_name: 'FloCafe Pune',
+      business_name: 'SENOVA POS Pune',
       currency: 'INR',
       country: 'IN',
       timezone: 'Asia/Kolkata',
@@ -656,7 +656,7 @@ async function run() {
     );
 
     const swTenant = {
-      business_name: 'FloCafe Nairobi',
+      business_name: 'SENOVA POS Nairobi',
       currency: 'KES',
       country: 'KE',
       timezone: 'Africa/Nairobi',
@@ -675,7 +675,7 @@ async function run() {
     );
 
     const paTenant = {
-      business_name: 'FloCafe Amritsar',
+      business_name: 'SENOVA POS Amritsar',
       currency: 'INR',
       country: 'IN',
       timezone: 'Asia/Kolkata',
@@ -694,7 +694,7 @@ async function run() {
     );
 
     const taTenant = {
-      business_name: 'FloCafe Chennai',
+      business_name: 'SENOVA POS Chennai',
       currency: 'INR',
       country: 'IN',
       timezone: 'Asia/Kolkata',
@@ -717,7 +717,7 @@ async function run() {
     );
 
     const ukTenant = {
-      business_name: 'FloCafe Київ',
+      business_name: 'SENOVA POS Київ',
       currency: 'UAH',
       country: 'UA',
       timezone: 'Europe/Kyiv',
@@ -1725,7 +1725,7 @@ async function run() {
           },
         },
         {
-          business_name: 'FloCafe New York',
+          business_name: 'SENOVA POS New York',
           currency: 'USD',
           country: 'US',
           timezone: 'America/New_York',
@@ -1782,7 +1782,7 @@ async function run() {
           },
         },
         {
-          business_name: 'Café Flo Madrid',
+          business_name: 'Café SENOVA POS Madrid',
           currency: 'EUR',
           country: 'ES',
           timezone: 'Europe/Madrid',
@@ -1840,7 +1840,7 @@ async function run() {
           },
         },
         {
-          business_name: 'FloCafe São Paulo',
+          business_name: 'SENOVA POS São Paulo',
           currency: 'BRL',
           country: 'BR',
           timezone: 'America/Sao_Paulo',
@@ -1861,7 +1861,7 @@ async function run() {
       html: generateBillHtml(
         testIranBill,
         {
-          business_name: 'FloCafe XP-58 Store',
+          business_name: 'SENOVA POS XP-58 Store',
           currency: 'USD',
           country: 'US',
           timezone: 'America/New_York',
@@ -1884,7 +1884,7 @@ async function run() {
       html: generateBillHtml(
         testIranBill,
         {
-          business_name: 'FloCafe XP-58 Store',
+          business_name: 'SENOVA POS XP-58 Store',
           currency: 'USD',
           country: 'US',
           timezone: 'America/New_York',
@@ -1907,7 +1907,7 @@ async function run() {
       html: generateBillHtml(
         testIranBill,
         {
-          business_name: 'FloCafe XP-58 Store',
+          business_name: 'SENOVA POS XP-58 Store',
           currency: 'USD',
           country: 'US',
           timezone: 'America/New_York',
@@ -1930,7 +1930,7 @@ async function run() {
       html: generateBillHtml(
         testIranBill,
         {
-          business_name: 'FloCafe 80mm Store',
+          business_name: 'SENOVA POS 80mm Store',
           currency: 'USD',
           country: 'US',
           timezone: 'America/New_York',
@@ -2099,7 +2099,7 @@ async function run() {
       },
     };
     const inrTenant = {
-      business_name: 'FloCafe Mumbai',
+      business_name: 'SENOVA POS Mumbai',
       currency: 'INR',
       country: 'IN',
       timezone: 'Asia/Kolkata',

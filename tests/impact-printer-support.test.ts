@@ -357,7 +357,7 @@ async function run() {
     order: sampleOrder,
   };
   const sampleBiz = {
-    name: 'Flo Impact Cafe',
+    name: 'SENOVA POS Impact Cafe',
     currency: 'USD',
     country: 'US',
     timezone: 'UTC',
@@ -477,7 +477,7 @@ async function run() {
   // Frontend receipt encoder logo guard
   const fe = loadFrontendPrintModules();
   const feTenant = {
-    business_name: 'Flo Impact Cafe',
+    business_name: 'SENOVA POS Impact Cafe',
     currency: 'USD',
     country: 'US',
     timezone: 'UTC',
@@ -611,7 +611,7 @@ async function run() {
   // Test printPaymentTicket QR suppression on escpos-impact-76 vs thermal
   const { printPaymentTicketDetailed } = require('../main/printers/thermal');
   const ticketSettings = {
-    business_name: 'Flo Impact Cafe',
+    business_name: 'SENOVA POS Impact Cafe',
     country: 'US',
     currency: 'USD',
     timezone: 'UTC',
@@ -657,8 +657,8 @@ async function run() {
   );
   assertIncludesOrThrow(
     decodedTicket,
-    'FLOCAFE-TICKET:ORD-7601',
-    'Impact payment ticket must still print centered FLOCAFE-TICKET:<order_number> text line',
+    'SENOVA-TICKET:ORD-7601',
+    'Impact payment ticket must still print centered SENOVA-TICKET:<order_number> text line',
   );
 
   // Switch printer to thermal profile and verify QR code IS emitted

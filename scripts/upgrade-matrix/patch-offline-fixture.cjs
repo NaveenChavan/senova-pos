@@ -4,9 +4,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const replacements = [
-  ['https://telemetry.flopos.com/collect', 'http://127.0.0.1:9/collect', 'telemetry'],
-  ['https://blue.flopos.com/', 'http://127.0.0.1:9/', 'cloud'],
-  ['https://blue.flopos.com', 'http://127.0.0.1:9', 'cloud'],
+  [
+    'https://telemetry.senovadigitallabs.example/collect',
+    'http://127.0.0.1:9/collect',
+    'telemetry',
+  ],
+  ['https://blue.senovadigitallabs.example/', 'http://127.0.0.1:9/', 'cloud'],
+  ['https://blue.senovadigitallabs.example', 'http://127.0.0.1:9', 'cloud'],
 ];
 
 function listFiles(root) {
@@ -72,12 +76,14 @@ function main() {
     }
   }
 
-  console.log(JSON.stringify({
-    fixture: 'offline',
-    telemetry_replacements: counts.telemetry,
-    cloud_replacements: counts.cloud,
-    endpoint: 'http://127.0.0.1:9',
-  }));
+  console.log(
+    JSON.stringify({
+      fixture: 'offline',
+      telemetry_replacements: counts.telemetry,
+      cloud_replacements: counts.cloud,
+      endpoint: 'http://127.0.0.1:9',
+    }),
+  );
 }
 
 try {

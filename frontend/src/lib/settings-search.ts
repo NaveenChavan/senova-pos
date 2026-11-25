@@ -1916,17 +1916,17 @@ export const SETTINGS_SEARCH_CATALOG: readonly SettingsSearchEntry[] = [
 
   // ─── Account: About ────────────────────────────────────────────────────────
   {
-    id: 'about-flocafe',
+    id: 'about-senova-pos',
     tab: 'about',
     groupLabelKey: 'navGroupAccount',
     tabLabelKey: 'tabAbout',
-    titleKey: 'aboutFloCafe',
+    titleKey: 'aboutSenovaPos',
     hintKey: 'aboutDescription',
     extraKeys: ['tabAbout', 'aboutWebsite', 'aboutGithub'],
     keywords: [
       'about',
-      'about flocafe',
-      'flopos',
+      'about senova pos',
+      'senova',
       'open source',
       'github',
       'repository',

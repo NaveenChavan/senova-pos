@@ -78,7 +78,7 @@ const testTaxPack = {
   id: 'test-th-pack',
   country: 'TH',
   currency: 'THB',
-  publisher: 'FreeOpenSourcePOS',
+  publisher: 'SenovaDigitalLabs',
 };
 
 // BUNDLED_COUNTRY_PACKS (main/tax-packs/bundled.ts) only ships the generic

@@ -7,15 +7,11 @@ import { KdsHtmlLang } from '@/components/kds/KdsHtmlLang';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Flo Server App',
-  description: 'Tableside ordering for FloCafe',
+  title: 'SENOVA POS Server App',
+  description: 'Tableside ordering for SENOVA POS',
 };
 
-export default function ServerStandaloneLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ServerStandaloneLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <body className={`${inter.className} h-full bg-slate-50 dark:bg-background`}>

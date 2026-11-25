@@ -13,7 +13,7 @@ const EVIDENCE_DIR =
   process.env.EVIDENCE_DIR ||
   (fs.existsSync(LOCAL_EVIDENCE_BASE)
     ? path.join(LOCAL_EVIDENCE_BASE, '01M6TWNVZRE2MT9WHN20Z3GYKA')
-    : path.join(os.tmpdir(), 'flocafe-telugu-e2e-evidence'));
+    : path.join(os.tmpdir(), 'senova-pos-telugu-e2e-evidence'));
 
 function ensureEvidenceDir() {
   if (!fs.existsSync(EVIDENCE_DIR)) {
@@ -21,7 +21,7 @@ function ensureEvidenceDir() {
   }
 }
 
-test.describe('Live Telugu (te / te-IN) E2E verification across FloCafe surfaces', () => {
+test.describe('Live Telugu (te / te-IN) E2E verification across SENOVA POS surfaces', () => {
   test('1. Setup wizard offers Telugu (తెలుగు / TE), switches html lang="te-IN" dir="ltr", and renders localized steps', async ({
     page,
   }) => {
@@ -42,7 +42,7 @@ test.describe('Live Telugu (te / te-IN) E2E verification across FloCafe surfaces
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'te-IN');
     await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
-    await expect(page.getByText('FloCafe కు స్వాగతం')).toBeVisible();
+    await expect(page.getByText('SENOVA POS కు స్వాగతం')).toBeVisible();
 
     await page.locator('.max-h-72 button').first().click();
     await page.screenshot({
@@ -267,7 +267,7 @@ test.describe('Live Telugu (te / te-IN) E2E verification across FloCafe surfaces
       await serverPage.goto(`${E2E_SERVER_APP_BASE_URL}/server-standalone`);
       await serverPage.evaluate(
         ([tok]) => {
-          localStorage.setItem('flocafe:server-app-token', tok);
+          localStorage.setItem('senova:server-app-token', tok);
           localStorage.setItem(
             'pos-settings',
             JSON.stringify({ state: { language: 'te' }, version: 3 }),
@@ -466,7 +466,7 @@ test.describe('Live Telugu (te / te-IN) E2E verification across FloCafe surfaces
         {
           language: 'te',
           locale: 'te-IN',
-          businessName: 'FloCafe హైదరాబాద్',
+          businessName: 'SENOVA POS హైదరాబాద్',
         },
       );
       expect(waDailySalesBody).toContain('రోజువారీ అమ్మకాల నివేదిక');

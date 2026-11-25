@@ -167,7 +167,7 @@ async function main() {
     'an unpackaged build reports dev even on a store platform',
   );
   assert.deepEqual(
-    detect({ app: { isPackaged: false }, platform: 'linux', env: { SNAP: '/snap/flocafe' } }),
+    detect({ app: { isPackaged: false }, platform: 'linux', env: { SNAP: '/snap/senova-pos' } }),
     { runMode: 'dev', installSource: 'dev' },
     'an unpackaged build never claims a distribution channel',
   );
@@ -194,17 +194,17 @@ async function main() {
     'a packaged macOS build without mas reports github',
   );
   assert.deepEqual(
-    detect({ platform: 'linux', env: { SNAP: '/snap/flocafe/current' } }),
+    detect({ platform: 'linux', env: { SNAP: '/snap/senova-pos/current' } }),
     { runMode: 'packaged', installSource: 'snap' },
     'SNAP reports snap',
   );
   assert.deepEqual(
-    detect({ platform: 'linux', env: { APPIMAGE: '/opt/FloCafe.AppImage' } }),
+    detect({ platform: 'linux', env: { APPIMAGE: '/opt/SENOVA POS.AppImage' } }),
     { runMode: 'packaged', installSource: 'appimage' },
     'APPIMAGE reports appimage',
   );
   assert.deepEqual(
-    detect({ platform: 'linux', env: { FLATPAK_ID: 'com.flopos.flocafe' } }),
+    detect({ platform: 'linux', env: { FLATPAK_ID: 'com.senovadigitallabs.pos' } }),
     { runMode: 'packaged', installSource: 'flatpak' },
     'FLATPAK_ID reports flatpak',
   );
@@ -297,7 +297,7 @@ async function main() {
       { run_mode: 'packaged', install_source: hostLinuxPackage() },
       'sendEvent reports the detected run mode and install source alongside existing fields',
     );
-    assert.equal(body?.app, 'flocafe', 'existing telemetry fields are preserved');
+    assert.equal(body?.app, 'senova-pos', 'existing telemetry fields are preserved');
     assert.equal(body?.event_type, 'app_launch', 'existing event type is preserved');
 
     detect({ app: { isPackaged: false }, platform: 'darwin' });

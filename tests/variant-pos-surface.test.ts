@@ -99,7 +99,7 @@ function product(overrides: Record<string, unknown> = {}) {
   return { id: 'prod-1', name: 'Cappuccino', price: 3, sku: null, barcode: null, ...overrides };
 }
 
-const business = { name: 'Flo Test Cafe', country: 'US', currency: 'USD' };
+const business = { name: 'SENOVA POS Test Cafe', country: 'US', currency: 'USD' };
 const bill = {
   bill_number: 'INV-1',
   subtotal: 11,
@@ -623,7 +623,7 @@ function receiptItem(variantSelection: unknown) {
     escPosToText(
       fe.taxBillEncoder.buildTaxBillBytes(
         taxBill(variantSelection) as any,
-        { business_name: 'Flo Test Cafe', currency: 'USD', country: 'US' } as any,
+        { business_name: 'SENOVA POS Test Cafe', currency: 'USD', country: 'US' } as any,
         { paperWidth: 80, rawEscPos: true, language: 'en' },
       ),
     );

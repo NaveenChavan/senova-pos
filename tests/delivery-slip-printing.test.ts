@@ -34,7 +34,7 @@ const fe = loadFrontendPrintModules();
 
 const GOLDEN_PATH = path.join(__dirname, 'fixtures/delivery-slip/golden-delivery-slip-v1.txt');
 const GOLDEN_HEADER = [
-  '# FloCafe delivery slip column golden fixture v1',
+  '# SENOVA POS delivery slip column golden fixture v1',
   '#',
   '# Every block is a measurement of emitted ESC/POS output, walked the way a',
   '# printer parses it, exactly as tests/receipt-column-oracle.test.ts does for',
@@ -70,7 +70,7 @@ const CONTACT = { name: 'Asha Kumar', phone: FULL_PHONE, address: FULL_ADDRESS }
 
 /** Business fixture the receipt path needs; unrelated to the slip. */
 const RECEIPT_BUSINESS: any = {
-  name: 'Flo Parity Cafe',
+  name: 'SNV Parity Cafe',
   address: '12 Marina Boulevard',
   phone: '9876543210',
   taxRegistrationNumber: 'GSTIN123456',
@@ -425,7 +425,7 @@ test('receipt encoder: masking is a named option that defaults to masked', () =>
     order: { ...RECEIPT_ORDER, customer: { name: 'Asha Kumar', phone: FULL_PHONE } },
   };
   const tenant: any = {
-    business_name: 'Flo Parity Cafe',
+    business_name: 'SNV Parity Cafe',
     currency: 'INR',
     country: 'IN',
     timezone: 'Asia/Kolkata',

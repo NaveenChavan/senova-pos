@@ -326,7 +326,7 @@ export function registerIpcHandlers(
       } else if (!fs.existsSync(backupPath)) {
         return { success: false, error: 'Backup file no longer exists' };
       } else if (!isManagedBackupFile(backupPath)) {
-        return { success: false, error: 'Restore source must be a Flo-managed backup file' };
+        return { success: false, error: 'Restore source must be a SENOVA POS-managed backup file' };
       }
 
       const backupVersion = getSchemaVersionFromBackup(backupPath);

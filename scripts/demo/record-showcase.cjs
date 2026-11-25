@@ -16,7 +16,7 @@ const { transcodeMedia } = require('./media-pipeline.cjs');
 
 const JWT_SECRET = 'showcase-secret-key-123';
 const DOCS_SHOWCASE_DIR = path.resolve(__dirname, '../../docs/assets/showcase');
-const DEFAULT_WEBSITE_ROOT = path.resolve(__dirname, '../../../flopos.com-showcase');
+const DEFAULT_WEBSITE_ROOT = path.resolve(__dirname, '../../../senovadigitallabs.example-showcase');
 const explicitWebsiteDir = process.env.WEBSITE_SHOWCASE_DIR || process.env.FLO_SHOWCASE_WEBSITE_DIR;
 const WEBSITE_SHOWCASE_DIR = explicitWebsiteDir
   ? path.resolve(explicitWebsiteDir)
@@ -42,7 +42,7 @@ async function setupPageAuth(page, token, url) {
   await page.evaluate(
     ({ tok }) => {
       localStorage.setItem('token', tok);
-      localStorage.setItem('flocafe:server-app-token', tok);
+      localStorage.setItem('senova:server-app-token', tok);
       localStorage.setItem(
         'pos-settings',
         JSON.stringify({ state: { language: 'en', orders_layout: 'split' } }),
@@ -630,7 +630,7 @@ async function recordThermalPrinting(browser) {
 
 // ── MASTER RUNNER ────────────────────────────────────────────────────────────
 async function main() {
-  console.log('Starting FloCafe Autonomous Media Recording Pipeline...');
+  console.log('Starting SENOVA POS Autonomous Media Recording Pipeline...');
 
   console.log('[Runner] Starting sandbox server...');
   const server = cp.spawn('node', [path.join(__dirname, 'showcase-server.cjs')], {

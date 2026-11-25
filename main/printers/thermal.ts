@@ -1545,7 +1545,7 @@ export async function printPaymentTicket(
     } = resolvePrinterContext(printer || { paper_width: '80mm' });
     const readSetting = (key: string): string | null =>
       options.settings !== undefined ? (options.settings[key] ?? null) : getSettingValue(key);
-    const storeName = readSetting('business_name') || 'FloCafe';
+    const storeName = readSetting('business_name') || 'SENOVA POS';
     const snapshot = resolveRegionalSnapshot({
       country: readSetting('country') || undefined,
       currency: readSetting('currency') || undefined,
@@ -1568,7 +1568,7 @@ export async function printPaymentTicket(
     };
 
     const balance = options.balance ?? order.total;
-    const qrPayload = `FLOCAFE-TICKET:${order.order_number}`;
+    const qrPayload = `SENOVA-TICKET:${order.order_number}`;
     const qrBytes = rasterCapabilityEnabled(capabilities) ? buildEscPosQrCode(qrPayload) : null;
 
     const buildTicketDocument = (
@@ -2855,7 +2855,7 @@ export function pluginReceiptLines(
   const renderer = parseJson(template.renderer_json, {}) as { id?: string; version?: number };
   const payload = parseJson(template.template_payload_json, {}) as any;
   if (
-    renderer.id !== 'flocafe-thermal-receipt-template' ||
+    renderer.id !== 'senova-pos-thermal-receipt-template' ||
     renderer.version !== 1 ||
     payload.format !== 'escpos-line-template-v1'
   ) {
@@ -3563,7 +3563,7 @@ function escposLineTemplateV1Lines(
           )) +
         '{/CENTER}',
     );
-  if (payload?.footer?.includePoweredByFloPOS !== false) appendPoweredByFooter(lines, cols);
+  if (payload?.footer?.includePoweredBySenovaPOS !== false) appendPoweredByFooter(lines, cols);
   lines.push('{CUT}');
 
   return { lines, columns: cols, financialLineRanges, rasterGroups };
@@ -5217,7 +5217,7 @@ export function validateNetworkPrinterTarget(rawHost: string, port: number): str
   if (isLocalHost) {
     const ownPorts = new Set<number>([getServerPort(), getKdsPort(), getServerAppPort()]);
     if (ownPorts.has(port)) {
-      return 'Printer address cannot target a local FloCafe server port';
+      return 'Printer address cannot target a local SENOVA POS server port';
     }
   }
 
@@ -5640,7 +5640,7 @@ public static class FloRawPrinter {
             EnsureReady(hPrinter);
 
             DOCINFO docInfo = new DOCINFO();
-            docInfo.pDocName = "FloCafe Receipt";
+            docInfo.pDocName = "SENOVA POS Receipt";
             docInfo.pDataType = "RAW";
 
             uint jobId = StartDocPrinter(hPrinter, 1, docInfo);

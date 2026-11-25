@@ -11,15 +11,19 @@ try {
   const bundle = path.join(root, 'dist');
   fs.mkdirSync(bundle);
   const file = path.join(bundle, 'index.js');
-  fs.writeFileSync(file, [
-    "const telemetry = 'https://telemetry.flopos.com/collect';",
-    "const cloud = 'https://blue.flopos.com';",
-  ].join('\n'));
+  fs.writeFileSync(
+    file,
+    [
+      "const telemetry = 'https://telemetry.senovadigitallabs.example/collect';",
+      "const cloud = 'https://blue.senovadigitallabs.example';",
+    ].join('\n'),
+  );
 
-  const result = spawnSync(process.execPath, [
-    path.join(__dirname, '../scripts/upgrade-matrix/patch-offline-fixture.cjs'),
-    root,
-  ], { encoding: 'utf8' });
+  const result = spawnSync(
+    process.execPath,
+    [path.join(__dirname, '../scripts/upgrade-matrix/patch-offline-fixture.cjs'), root],
+    { encoding: 'utf8' },
+  );
   assert.equal(result.status, 0, result.stderr);
   const fixtureResult = JSON.parse(result.stdout);
   assert.equal(fixtureResult.telemetry_replacements, 1);
@@ -31,11 +35,12 @@ try {
   assert.match(patched, /http:\/\/127\.0\.0\.1:9/);
 
   const packed = path.join(root, 'app.asar');
-  fs.writeFileSync(packed, Buffer.from('https://telemetry.flopos.com/collect'));
-  const packedResult = spawnSync(process.execPath, [
-    path.join(__dirname, '../scripts/upgrade-matrix/patch-offline-fixture.cjs'),
-    packed,
-  ], { encoding: 'utf8' });
+  fs.writeFileSync(packed, Buffer.from('https://telemetry.senovadigitallabs.example/collect'));
+  const packedResult = spawnSync(
+    process.execPath,
+    [path.join(__dirname, '../scripts/upgrade-matrix/patch-offline-fixture.cjs'), packed],
+    { encoding: 'utf8' },
+  );
   assert.equal(packedResult.status, 0, packedResult.stderr);
   assert.doesNotMatch(fs.readFileSync(packed, 'utf8'), /https:\/\/telemetry\.flopos\.com\/collect/);
 } finally {

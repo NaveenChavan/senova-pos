@@ -1,6 +1,6 @@
 # Data and migrations
 
-FloCafe stores everything in one SQLite file managed with `better-sqlite3`. Schema change is
+SENOVA POS stores everything in one SQLite file managed with `better-sqlite3`. Schema change is
 append-only and versioned. This page covers where the file lives, how a version becomes a
 migration, what protects customer data on the way, and how to verify all of it.
 
@@ -100,7 +100,7 @@ data:
    recovery flow compares the database schema version (and recorded app version when available)
    against the running build and offers four actions:
 
-   - **Get Latest Version** - opens `FLOCAFE_RELEASES_URL` in the system browser and exits with code
+   - **Get Latest Version** - opens `SENOVA_RELEASES_URL` in the system browser and exits with code
      `0` without modifying any files; if the browser cannot open, shows the URL in an error dialog
      and stays in recovery.
    - **Open Backups Folder** - opens `backups/` (or the database parent folder when `backups/` does
@@ -115,7 +115,7 @@ data:
      `_flo_meta`, core tables, foreign keys, and the inventory ledger or pre-v85 stock snapshot)
      rather than trusting filenames, and lists all candidates with
      `schemaVersion <= getLatestSupportedSchemaVersion()`. When no compatible valid backup exists,
-     the dialog reports whether backups are missing, require a newer FloCafe version, or failed
+     the dialog reports whether backups are missing, require a newer SENOVA POS version, or failed
      validation, while keeping update, folder-open, and exit actions available. Restoring a selected
      backup requires explicit confirmation warning that orders, payments, inventory changes, and
      settings recorded after that backup are absent from the restored database and stating the
@@ -244,7 +244,7 @@ loss. Retention failure is logged and never fails the committed restore.
 
 ### Daily local backup
 
-`main/services/local-backup.ts` writes one backup a day to `Documents/FloCafe/Backups`, outside
+`main/services/local-backup.ts` writes one backup a day to `Documents/SENOVA POS/Backups`, outside
 `userData`, so it survives a data wipe, a reinstall, and an uninstall. It is on unless
 `local_backup_enabled` is `'false'`. A check runs two minutes after startup and then hourly; it calls
 `createBackup()` when the newest file is at least 24 hours old, and skips a database with

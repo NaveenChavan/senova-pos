@@ -691,14 +691,14 @@ async function showRuntimeStuckDialog(reason: string): Promise<void> {
       `URL: ${lastWindowLoadFailure.validatedURL ?? `http://localhost:${getServerPort()}`}`,
     );
   }
-  detailLines.push(`Platform: ${process.platform} | Flo: ${app.getVersion()}`);
+  detailLines.push(`Platform: ${process.platform} | SENOVA POS: ${app.getVersion()}`);
 
   const { response } = await dialog.showMessageBox({
     type: 'error',
-    title: 'Flo needs to restart',
+    title: 'SENOVA POS needs to restart',
     message:
-      'Flo could not recover automatically. This usually means another program ' +
-      '(antivirus, firewall, or a leftover Flo process) is blocking its local server.\n\n' +
+      'SENOVA POS could not recover automatically. This usually means another program ' +
+      '(antivirus, firewall, or a leftover SENOVA POS process) is blocking its local server.\n\n' +
       'Please quit and reopen the app. If this keeps happening, sending a diagnostic ' +
       'report helps us fix it — it contains no order, customer, or business data.',
     detail: detailLines.join('\n'),
@@ -717,7 +717,7 @@ async function showRuntimeStuckDialog(reason: string): Promise<void> {
 
   await dialog.showMessageBox({
     type: 'info',
-    title: 'Flo',
+    title: 'SENOVA POS',
     message:
       'Diagnostic captured. If sharing is enabled and this device is online, it will be sent automatically.',
     buttons: ['Quit'],
@@ -751,7 +751,7 @@ function requestRuntimeRelaunch(reason: string): void {
       return;
     }
     try {
-      log.info('[Lifecycle] Runtime cleanup finished; relaunching Flo');
+      log.info('[Lifecycle] Runtime cleanup finished; relaunching SENOVA POS');
       performAppRelaunch();
       app.exit(0);
     } catch (error) {
@@ -778,8 +778,8 @@ if (process.env.FLO_E2E_USER_DATA_DIR) {
   app.setPath('userData', path.resolve(process.env.FLO_E2E_USER_DATA_DIR));
 } else if (process.platform === 'linux') {
   // Set explicit paths on Linux to avoid temporary mount directories.
-  app.name = 'flo-desktop';
-  app.setPath('userData', path.join(os.homedir(), '.config', 'flo-desktop'));
+  app.name = 'senova-pos';
+  app.setPath('userData', path.join(os.homedir(), '.config', 'senova-pos'));
 }
 
 gotSingleInstanceLock = app.requestSingleInstanceLock();
@@ -897,9 +897,11 @@ function createWindow(): void {
     if (isSafeExternalUrl(url)) {
       shell
         .openExternal(url)
-        .catch((err) => console.warn('[Flo] Failed to open external URL:', err?.message || err));
+        .catch((err) =>
+          console.warn('[SENOVA POS] Failed to open external URL:', err?.message || err),
+        );
     } else {
-      console.warn('[Flo] Blocked unsafe external URL scheme:', url);
+      console.warn('[SENOVA POS] Blocked unsafe external URL scheme:', url);
     }
     return { action: 'deny' };
   });
@@ -1195,7 +1197,7 @@ function createTray(): void {
         },
       ]);
 
-      tray.setToolTip('Flo Cafe');
+      tray.setToolTip('SENOVA POS');
       tray.setContextMenu(linuxMenu);
       // Single-click also shows the window on Linux (no double-click standard).
       tray.on('click', () => {
@@ -1222,7 +1224,7 @@ function createTray(): void {
 
     const contextMenu = Menu.buildFromTemplate([
       {
-        label: 'Open Flo',
+        label: 'Open SENOVA POS',
         click: () => {
           showMainWindow();
         },
@@ -1237,7 +1239,7 @@ function createTray(): void {
       },
     ]);
 
-    tray.setToolTip('Flo');
+    tray.setToolTip('SENOVA POS');
     tray.setContextMenu(contextMenu);
     tray.on('double-click', () => {
       showMainWindow();
@@ -1251,7 +1253,7 @@ function startMdns(): void {
   try {
     bonjour = new Bonjour();
     bonjour.publish({
-      name: 'Flo',
+      name: 'SENOVA POS',
       type: 'http',
       port: getServerPort(),
       host: 'flo', // resolves as flo.local on the LAN
@@ -1485,7 +1487,7 @@ function createMenu(): void {
       label: 'Window',
       submenu: [
         {
-          label: 'Flo Cafe',
+          label: 'SENOVA POS',
           click: () => {
             if (showMainWindow()) mainWindow?.focus();
           },
@@ -1501,7 +1503,7 @@ function createMenu(): void {
       label: 'Help',
       submenu: [
         ...(process.platform !== 'darwin'
-          ? [{ label: 'About Flo', click: () => showAbout() }]
+          ? [{ label: 'About SENOVA POS', click: () => showAbout() }]
           : []),
         ...(isStoreBuild ? [] : [{ label: 'Check for Updates', click: () => checkForUpdates() }]),
         {
@@ -1540,8 +1542,8 @@ function showAbout(): void {
   const serverAppPort = getServerAppPort();
   dialog.showMessageBox({
     type: 'info',
-    title: 'About Flo',
-    message: 'Flo Cafe',
+    title: 'About SENOVA POS',
+    message: 'SENOVA POS',
     detail: [
       `Version: ${app.getVersion()}`,
       `Electron: ${process.versions.electron}`,
@@ -1567,12 +1569,12 @@ async function initialize(): Promise<void> {
     log.info('[Lifecycle] Runtime is starting');
     try {
       if (isShutdownRequested()) return;
-      console.log('[Flo] Initializing...');
+      console.log('[SENOVA POS] Initializing...');
 
       await showStatus('starting');
       await showStatus('checking');
       await waitForPaint();
-      console.log('[Flo] Initializing database...');
+      console.log('[SENOVA POS] Initializing database...');
       initDatabase();
       autoRepairSchemaDrift();
       setStatusLanguage(getSettingValue('language'));
@@ -1585,7 +1587,7 @@ async function initialize(): Promise<void> {
       }
       await showStatus('services');
 
-      console.log('[Flo] Starting local server...');
+      console.log('[SENOVA POS] Starting local server...');
       await startServer();
       if (isShutdownRequested()) return;
 
@@ -1595,26 +1597,26 @@ async function initialize(): Promise<void> {
       googleDrive.start();
       localBackup.start();
 
-      console.log('[Flo] Starting KDS server on port 3002...');
+      console.log('[SENOVA POS] Starting KDS server on port 3002...');
       await startKdsServer();
       if (isShutdownRequested()) return;
 
-      console.log('[Flo] Starting Server App on port 3003...');
+      console.log('[SENOVA POS] Starting Server App on port 3003...');
       await startServerApp();
       if (isShutdownRequested()) return;
 
       // Native E2E owns an offline fixture; optional LAN discovery must not
       // contend with a developer session or keep the test process alive.
       if (process.env.FLO_E2E_SKIP_OPTIONAL_NETWORK !== '1') {
-        console.log('[Flo] Starting mDNS advertisement...');
+        console.log('[SENOVA POS] Starting mDNS advertisement...');
         startMdns();
       }
 
-      console.log('[Flo] Initializing printer...');
+      console.log('[SENOVA POS] Initializing printer...');
       await initPrinter();
       if (isShutdownRequested()) return;
 
-      console.log('[Flo] Registering IPC handlers...');
+      console.log('[SENOVA POS] Registering IPC handlers...');
       registerIpcHandlers(
         shutdownSignal,
         () => mainWindow,
@@ -1669,7 +1671,7 @@ async function initialize(): Promise<void> {
       runtimeState = 'ready';
       relaunchAttemptGuard.markRuntimeRecovered();
       log.info('[Lifecycle] Runtime is ready');
-      console.log('[Flo] Creating window...');
+      console.log('[SENOVA POS] Creating window...');
       void showStatus('welcome');
       createWindow();
       registerPowerMonitorRecovery();
@@ -1696,7 +1698,7 @@ async function initialize(): Promise<void> {
         }, 5000);
       }
 
-      console.log('[Flo] Ready!');
+      console.log('[SENOVA POS] Ready!');
       return;
     } catch (error) {
       // The status window may be the only window; closing it must not quit mid-recovery.
@@ -1710,7 +1712,10 @@ async function initialize(): Promise<void> {
             try {
               await runCleanup();
             } catch (cleanupError) {
-              console.error('[Flo] Cleanup after interrupted initialization failed:', cleanupError);
+              console.error(
+                '[SENOVA POS] Cleanup after interrupted initialization failed:',
+                cleanupError,
+              );
             }
             return;
           }
@@ -1745,7 +1750,10 @@ async function initialize(): Promise<void> {
             try {
               await runCleanup();
             } catch (cleanupError) {
-              console.error('[Flo] Cleanup after interrupted initialization failed:', cleanupError);
+              console.error(
+                '[SENOVA POS] Cleanup after interrupted initialization failed:',
+                cleanupError,
+              );
             }
             return;
           }
@@ -1755,7 +1763,10 @@ async function initialize(): Promise<void> {
           try {
             await runCleanup();
           } catch (cleanupError) {
-            console.error('[Flo] Cleanup after newer-database recovery exit failed:', cleanupError);
+            console.error(
+              '[SENOVA POS] Cleanup after newer-database recovery exit failed:',
+              cleanupError,
+            );
           }
           app.exit(0);
           return;
@@ -1766,7 +1777,7 @@ async function initialize(): Promise<void> {
 
       runtimeState = 'failed';
       log.error('[Lifecycle] Runtime initialization failed:', fatalStartupError);
-      console.error('[Flo] Initialization error:', fatalStartupError);
+      console.error('[SENOVA POS] Initialization error:', fatalStartupError);
       const errorDetails = fatalStartupError as { code?: unknown; name?: unknown } | null;
       const expectedShutdownCancellation =
         errorDetails?.code === 'ERR_SHUTDOWN_ABORTED' ||
@@ -1777,14 +1788,20 @@ async function initialize(): Promise<void> {
         try {
           await runCleanup();
         } catch (cleanupError) {
-          console.error('[Flo] Cleanup after interrupted initialization failed:', cleanupError);
+          console.error(
+            '[SENOVA POS] Cleanup after interrupted initialization failed:',
+            cleanupError,
+          );
         }
         return;
       }
       try {
-        dialog.showErrorBox('Initialization Error', `Failed to start Flo: ${fatalStartupError}`);
+        dialog.showErrorBox(
+          'Initialization Error',
+          `Failed to start SENOVA POS: ${fatalStartupError}`,
+        );
       } catch (dialogError) {
-        console.error('[Flo] Failed to display initialization error dialog:', dialogError);
+        console.error('[SENOVA POS] Failed to display initialization error dialog:', dialogError);
       }
 
       // Capture only a safe classification; exception text can contain business data.
@@ -1794,14 +1811,14 @@ async function initialize(): Promise<void> {
           outcome: 'not_applied',
         });
       } catch (diagnosticError) {
-        console.error('[Flo] Failed to capture startup failure:', diagnosticError);
+        console.error('[SENOVA POS] Failed to capture startup failure:', diagnosticError);
       }
 
       isQuitting = true;
       try {
         await runCleanup();
       } catch (cleanupError) {
-        console.error('[Flo] Cleanup after initialization failure failed:', cleanupError);
+        console.error('[SENOVA POS] Cleanup after initialization failure failed:', cleanupError);
       }
       // Cleanup has settled (or reported its bounded failure) before exiting.
       app.exit(1);
@@ -1834,7 +1851,10 @@ app.whenReady().then(() => {
         runtimeState = 'failed';
         void runCleanup()
           .catch((cleanupError) => {
-            console.error('[Flo] Cleanup after unhandled startup error failed:', cleanupError);
+            console.error(
+              '[SENOVA POS] Cleanup after unhandled startup error failed:',
+              cleanupError,
+            );
           })
           .finally(() => {
             app.exit(1);
@@ -1942,7 +1962,7 @@ const { runCleanup, isShutdownRequested, shutdownSignal } = createShutdownEntryp
   process: process as unknown as ShutdownEntrypointProcess,
   cleanup: async () => {
     log.info('[Lifecycle] Cleanup started');
-    console.log('[Flo] Running cleanup...');
+    console.log('[SENOVA POS] Running cleanup...');
     if (shouldShowShutdownStatus()) {
       if (mainWindow && !mainWindow.isDestroyed()) mainWindow.hide();
       void showStatus('closing', true);
@@ -1951,10 +1971,10 @@ const { runCleanup, isShutdownRequested, shutdownSignal } = createShutdownEntryp
       await cleanupCoordinator();
       await holdStatus(SHUTDOWN_MESSAGE_VISIBLE_MS);
       log.info('[Lifecycle] Cleanup completed');
-      console.log('[Flo] Goodbye!');
+      console.log('[SENOVA POS] Goodbye!');
     } catch (error) {
       log.error('[Lifecycle] Cleanup failed:', error);
-      console.error('[Flo] Cleanup failed:', error);
+      console.error('[SENOVA POS] Cleanup failed:', error);
       throw error;
     }
   },
@@ -1968,15 +1988,15 @@ const { runCleanup, isShutdownRequested, shutdownSignal } = createShutdownEntryp
   },
   isInstallingUpdate: () => isInstallingUpdate,
   reportFailure: (context, error) => {
-    console.error(`[Flo] Cleanup failed before ${context}:`, error);
+    console.error(`[SENOVA POS] Cleanup failed before ${context}:`, error);
   },
   getSignalExitCode: () => (startupFailure ? 1 : 0),
   getQuitExitCode: () => (startupFailure ? 1 : 0),
 });
 
 process.on('uncaughtException', (error) => {
-  log.error('[Flo] Uncaught exception:', error);
-  console.error('[Flo] Uncaught exception:', error);
+  log.error('[SENOVA POS] Uncaught exception:', error);
+  console.error('[SENOVA POS] Uncaught exception:', error);
   if (!isQuitting && !isShutdownRequested()) {
     cloudSync.captureOperationFailure({
       capture_point: 'fc.electron.main.uncaught',
@@ -1987,8 +2007,8 @@ process.on('uncaughtException', (error) => {
 });
 
 process.on('unhandledRejection', (reason) => {
-  log.error('[Flo] Unhandled rejection:', reason);
-  console.error('[Flo] Unhandled rejection:', reason);
+  log.error('[SENOVA POS] Unhandled rejection:', reason);
+  console.error('[SENOVA POS] Unhandled rejection:', reason);
   if (!isQuitting && !isShutdownRequested()) {
     cloudSync.captureOperationFailure({
       capture_point: 'fc.electron.main.unhandled_rejection',

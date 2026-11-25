@@ -225,7 +225,7 @@ describe('Issue #263: Phone Normalization, Validation, and Privacy', () => {
     const resValid = await api(baseUrl, '/api/settings/business', {
       method: 'PUT',
       body: {
-        business_name: 'FloCafe Main',
+        business_name: 'SENOVA POS Main',
         country: 'IN',
         currency: 'INR',
         timezone: 'Asia/Kolkata',
@@ -240,7 +240,7 @@ describe('Issue #263: Phone Normalization, Validation, and Privacy', () => {
     const resInvalid = await api(baseUrl, '/api/settings/business', {
       method: 'PUT',
       body: {
-        business_name: 'FloCafe Main',
+        business_name: 'SENOVA POS Main',
         country: 'IN',
         currency: 'INR',
         timezone: 'Asia/Kolkata',
@@ -255,7 +255,7 @@ describe('Issue #263: Phone Normalization, Validation, and Privacy', () => {
     const res = await api(baseUrl, '/api/settings/business', {
       method: 'PUT',
       body: {
-        business_name: 'FloCafe Main',
+        business_name: 'SENOVA POS Main',
         country: 'IN',
         currency: 'INR',
         timezone: 'Asia/Kolkata',
@@ -463,7 +463,7 @@ describe('Issue #263: Phone Normalization, Validation, and Privacy', () => {
 
   test('Privacy guarantee: telemetry payloads never include phone numbers', async () => {
     const { sendEvent, TELEMETRY_URL } = require('../main/services/telemetry');
-    assert.equal(TELEMETRY_URL, 'https://telemetry.flopos.com/collect');
+    assert.equal(TELEMETRY_URL, 'https://telemetry.senovadigitallabs.example/collect');
 
     const db = getDatabase();
     db.prepare(
@@ -499,7 +499,7 @@ describe('Issue #263: Phone Normalization, Validation, and Privacy', () => {
       assert.ok(sentBody.length > 0);
 
       const payload = JSON.parse(sentBody);
-      assert.equal(payload.app, 'flocafe');
+      assert.equal(payload.app, 'senova-pos');
       assert.equal(payload.event_type, 'app_launch');
       assert.equal(payload.country, 'IN');
       assert.ok(payload.anon_id);

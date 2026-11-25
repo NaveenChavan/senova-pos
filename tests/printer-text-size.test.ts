@@ -66,7 +66,7 @@ const bill = {
   payment_details: JSON.stringify([{ method: 'Cash', amount: 635 }]),
 };
 const business = {
-  name: 'Flo Test Cafe',
+  name: 'SENOVA POS Test Cafe',
   address: '42 MG Road, Bengaluru 560001',
   phone: '+91 98765 43210',
   taxRegistrationNumber: 'TAXID-0001',
@@ -312,7 +312,7 @@ test('pack width profiles are chosen by physical width and reflowed for extra la
     jurisdiction: '*',
     display_name: 'Pack 48 Test',
     paper_widths_json: '[32,48]',
-    renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+    renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
     template_payload_json: JSON.stringify(payload),
     status: 'active',
     created_at: '2026-04-21T10:30:00Z',
@@ -340,7 +340,7 @@ test('pack width profiles are chosen by physical width and reflowed for extra la
     payment_details: JSON.stringify([{ method: 'Cash', amount: 31.23 }]),
   };
   const packBusiness = {
-    name: 'Flo Test Cafe',
+    name: 'SENOVA POS Test Cafe',
     country: 'US',
     currency: 'USD',
     show_tax_breakdown: true,
@@ -448,7 +448,7 @@ test('pack and standard receipts never truncate financial values across 32 and 4
     jurisdiction: '*',
     display_name: 'Pack Overflow Test',
     paper_widths_json: '[32,48]',
-    renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+    renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
     template_payload_json: JSON.stringify(payload),
     status: 'active',
     created_at: '2026-04-21T10:30:00Z',
@@ -496,7 +496,7 @@ test('pack and standard receipts never truncate financial values across 32 and 4
     payment_details: JSON.stringify([{ method: 'Card', amount: 27252.61 }]),
   };
   const highValueBusiness = {
-    name: 'Flo Test Cafe',
+    name: 'SENOVA POS Test Cafe',
     country: 'US',
     currency: 'USD',
     show_tax_breakdown: true,
@@ -637,7 +637,7 @@ test('overflowing unbreakable financial values throw an explicit error before em
     jurisdiction: '*',
     display_name: 'Pack Unbreakable Test',
     paper_widths_json: '[32]',
-    renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+    renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
     template_payload_json: JSON.stringify({
       format: 'escpos-line-template-v1',
       widthProfiles: [{ columns: 32, layout: layout32 }],
@@ -672,7 +672,7 @@ test('overflowing unbreakable financial values throw an explicit error before em
     discount_amount: 0,
     total: 100_000_000_000.99,
   };
-  const biz = { name: 'Flo Test Cafe', country: 'US', currency: 'USD' };
+  const biz = { name: 'SENOVA POS Test Cafe', country: 'US', currency: 'USD' };
 
   assert.throws(
     () =>
@@ -746,7 +746,7 @@ test('raster 4-column pack rows rebalance spare pixel width so large financial n
     jurisdiction: '*',
     display_name: 'Pack Raster 4Col',
     paper_widths_json: '[32]',
-    renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+    renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
     template_payload_json: JSON.stringify({
       format: 'escpos-line-template-v1',
       widthProfiles: [{ columns: 32, layout: layout32 }],
@@ -786,7 +786,7 @@ test('raster 4-column pack rows rebalance spare pixel width so large financial n
       discount_amount: 0,
       total: 1234.56,
     },
-    { name: 'Flo Test Cafe', country: 'US', currency: 'USD' },
+    { name: 'SENOVA POS Test Cafe', country: 'US', currency: 'USD' },
     columns,
     false,
     false,
@@ -933,7 +933,7 @@ test('tax breakdown rates, space-grouped addon prices, and zero-gap/wrapped fina
     jurisdiction: '*',
     display_name: 'Pack Zero Gap Wrap',
     paper_widths_json: '[32]',
-    renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+    renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
     template_payload_json: JSON.stringify({
       format: 'escpos-line-template-v1',
       widthProfiles: [
@@ -997,7 +997,7 @@ test('tax breakdown rates, space-grouped addon prices, and zero-gap/wrapped fina
     total: 26534.4,
   };
   const frBiz = {
-    name: 'Flo Test Cafe',
+    name: 'SENOVA POS Test Cafe',
     country: 'FR',
     currency: 'EUR',
     show_tax_breakdown: true,
@@ -1188,7 +1188,7 @@ test('frontend WebUSB byte encoders apply capabilities.textSize across 58mm and 
     order: webusbOrder,
   };
   const webusbTenant: any = {
-    business_name: 'FloCafe Test',
+    business_name: 'SENOVA POS Test',
     currency: 'USD',
     country: 'US',
     timezone: 'UTC',

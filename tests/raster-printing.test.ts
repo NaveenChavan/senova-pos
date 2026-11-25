@@ -2593,7 +2593,7 @@ async function run(): Promise<void> {
       jurisdiction: 'MX',
       display_name: 'MX Ticket',
       paper_widths_json: '["80mm"]',
-      renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+      renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
       template_payload_json: JSON.stringify({
         format: 'escpos-line-template-v1',
         widthProfiles: [
@@ -2677,7 +2677,7 @@ async function run(): Promise<void> {
       jurisdiction: '*',
       display_name: 'IN GST Ticket',
       paper_widths_json: '["80mm"]',
-      renderer_json: JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+      renderer_json: JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
       template_payload_json: JSON.stringify({
         format: 'escpos-line-template-v1',
         widthProfiles: [
@@ -3447,7 +3447,7 @@ async function run(): Promise<void> {
       generic80.capabilities,
     );
     assert.ok(trTestBytes.includes(Buffer.from([0x1d, 0x76, 0x30])));
-    assert.ok(zRasterRequests.some((req) => req.text.includes('Flo Yazıcı Testi')));
+    assert.ok(zRasterRequests.some((req) => req.text.includes('SENOVA POS Yazıcı Testi')));
     assert.ok(
       zRasterRequests.some((req) =>
         req.text.includes('Bu metni okuyabiliyorsanız yazıcınız başarıyla çalışıyor!'),

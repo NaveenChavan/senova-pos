@@ -253,7 +253,7 @@ export function startServer(): Promise<void> {
       res.status(db.ok ? 200 : 503).json({
         status: db.ok ? 'ok' : 'error',
         db: db.ok ? 'ok' : db.error,
-        service: 'Flo Local API',
+        service: 'SENOVA POS Local API',
         version: process.env.npm_package_version || '2.4.7',
         timestamp: new Date().toISOString(),
       });
@@ -300,7 +300,7 @@ export function startServer(): Promise<void> {
       app.get('/', (_req: Request, res: Response) => {
         res.send(`
           <html><body style="font-family:sans-serif;padding:2rem">
-            <h2>Flo – Frontend not built</h2>
+            <h2>SENOVA POS – Frontend not built</h2>
             <p>Run <code>npm run build:frontend</code> then restart the app.</p>
           </body></html>
         `);

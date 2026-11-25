@@ -203,12 +203,12 @@ async function main(): Promise<void> {
               {
                 id: 'menu-folder',
                 capabilities: { canAddChildren: true },
-                appProperties: { flo_destination_kind: 'flocafe_menu' },
+                appProperties: { flo_destination_kind: 'senova_menu' },
               },
               {
                 id: 'backup-folder',
                 capabilities: { canAddChildren: true },
-                appProperties: { flo_destination_kind: 'flocafe' },
+                appProperties: { flo_destination_kind: 'senova-pos' },
               },
             ],
           },

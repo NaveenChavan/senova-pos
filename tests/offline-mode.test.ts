@@ -517,13 +517,13 @@ async function main() {
             JSON.stringify([
               {
                 tag_name: 'tax-pack-official-india-v1.0.0',
-                html_url: 'https://github.com/FreeOpenSourcePOS/FloCafe-Plugins/releases/tag/v1',
+                html_url: 'https://github.com/SenovaDigitalLabs/senova-pos-plugins/releases/tag/v1',
                 draft: false,
                 assets: [
                   {
                     name: 'catalog.json',
                     browser_download_url:
-                      'https://github.com/FreeOpenSourcePOS/FloCafe-Plugins/releases/download/tax-pack-official-india-v1.0.0/catalog.json',
+                      'https://github.com/SenovaDigitalLabs/senova-pos-plugins/releases/download/tax-pack-official-india-v1.0.0/catalog.json',
                   },
                 ],
               },
@@ -556,7 +556,7 @@ async function main() {
       let packDownloadAborted = false;
       const validEntry = {
         id: 'official-india',
-        publisher: 'FreeOpenSourcePOS',
+        publisher: 'SenovaDigitalLabs',
         country: 'IN',
         jurisdiction: 'India GST',
         version: '1.0.0',
@@ -564,9 +564,9 @@ async function main() {
         minFloVersion: '1.0.0',
         digest: 'a'.repeat(64),
         downloadUrl:
-          'https://github.com/FreeOpenSourcePOS/FloCafe-Plugins/releases/download/tax-pack-official-india-v1.0.0/pack.json',
+          'https://github.com/SenovaDigitalLabs/senova-pos-plugins/releases/download/tax-pack-official-india-v1.0.0/pack.json',
         signatureUrl:
-          'https://github.com/FreeOpenSourcePOS/FloCafe-Plugins/releases/download/tax-pack-official-india-v1.0.0/pack.json.sig',
+          'https://github.com/SenovaDigitalLabs/senova-pos-plugins/releases/download/tax-pack-official-india-v1.0.0/pack.json.sig',
       };
       let downloadPackErrCode = '';
       try {
@@ -993,7 +993,7 @@ async function main() {
       let checkToken: any = null;
       linkUpdateCheckRequests(executor, () => checkToken);
       const provider = new GitHubProvider(
-        { provider: 'github', owner: 'flo', repo: 'flocafe' },
+        { provider: 'github', owner: 'flo', repo: 'senova-pos' },
         { channel: null, allowPrerelease: false, fullChangelog: false },
         { executor, platform: 'darwin', isUseMultipleRangeRequest: true },
       );
@@ -1033,7 +1033,7 @@ async function main() {
       for (const resolve of pending.splice(0)) {
         resolve(
           '<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><entry>' +
-            '<link href="https://github.com/flo/flocafe/releases/tag/v99.0.0"/></entry></feed>',
+            '<link href="https://github.com/flo/senova-pos/releases/tag/v99.0.0"/></entry></feed>',
         );
       }
       const outcome = await Promise.race([

@@ -66,7 +66,7 @@ import {
   restoreCompatibleBackupForDowngrade,
   SchemaVersionMismatchError,
 } from '../main/db';
-import { FLOCAFE_RELEASES_URL, runDowngradeRecoveryFlow } from '../main/downgrade-recovery';
+import { SENOVA_RELEASES_URL, runDowngradeRecoveryFlow } from '../main/downgrade-recovery';
 import { getUserAuthStatus, isTokenRevoked, revokeToken } from '../main/middleware/security';
 import {
   clearJWTSecretCache,
@@ -634,7 +634,7 @@ async function run(): Promise<void> {
     const rejectedByName = new Map(discovery.corruptOrInvalid.map((item) => [item.fileName, item]));
     assert.equal(
       rejectedByName.get(path.basename(preV0BackupPath))?.detail,
-      'Backup does not contain an initialized Flo Cafe schema',
+      'Backup does not contain an initialized SENOVA POS schema',
       'first-boot pre-v0 snapshot reports uninitialized schema rather than header mismatch',
     );
     assert.equal(rejectedByName.get(path.basename(preV0BackupPath))?.schemaVersion, null);
@@ -690,7 +690,7 @@ async function run(): Promise<void> {
     });
     assert.deepEqual(noCompatibleOutcome, {
       outcome: 'opened_releases',
-      url: FLOCAFE_RELEASES_URL,
+      url: SENOVA_RELEASES_URL,
     });
     assert.equal(noCompatibleDialogs[1]?.title, 'No Compatible Backup Available');
     assert.deepEqual(noCompatibleDialogs[1]?.buttons, [
@@ -698,12 +698,12 @@ async function run(): Promise<void> {
       'Open Backups Folder',
       'Exit',
     ]);
-    assert.match(noCompatibleDialogs[1]?.detail || '', /require a newer Flo Cafe version/);
+    assert.match(noCompatibleDialogs[1]?.detail || '', /require a newer SENOVA POS version/);
     assert.match(noCompatibleDialogs[1]?.detail || '', /failed integrity or schema validation/);
     assert.deepEqual(openedPaths, [backupDir], 'Open Backups Folder reveals backupDir');
     assert.deepEqual(
       openedUrls,
-      [FLOCAFE_RELEASES_URL],
+      [SENOVA_RELEASES_URL],
       'Get Latest Version opens official releases URL',
     );
     assert.equal(
@@ -2718,7 +2718,7 @@ async function run(): Promise<void> {
           restoreCompatibleBackupForDowngrade(hotCompatibleBackupPath, {
             newerDbVersion,
           }),
-        /rollback journal[\s\S]*update Flo Cafe/i,
+        /rollback journal[\s\S]*update SENOVA POS/i,
         'downgrade restore refuses active hot rollback journal with actionable update guidance',
       );
       assert.equal(

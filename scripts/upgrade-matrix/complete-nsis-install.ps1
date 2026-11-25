@@ -43,7 +43,7 @@ if ($null -eq $installer) {
     Where-Object { [string]$_.CommandLine -match '(?i)--updated' } |
     Select-Object Name, ProcessId, ExecutablePath, CommandLine
   $details = $updatedProcesses | Out-String
-  throw "Timed out waiting for the staged Flo NSIS installer. Updated processes: $details"
+  throw "Timed out waiting for the staged SENOVA POS NSIS installer. Updated processes: $details"
 }
 
 $installerPath = [System.IO.Path]::GetFullPath([string]$installer.ExecutablePath)

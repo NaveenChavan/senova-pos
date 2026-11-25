@@ -2394,7 +2394,7 @@ async function sendMessageInternal(req: QueuedSend, signal: AbortSignal): Promis
     return {
       ok: false,
       ...retryIdPart,
-      error: 'Flo is not connected to WhatsApp.',
+      error: 'SENOVA POS is not connected to WhatsApp.',
       reason: 'not_connected',
     };
   }
@@ -3631,7 +3631,7 @@ export async function runBroadcast(opts: BroadcastSegmentOptions): Promise<{
       attempted: 0,
       sent: 0,
       skipped: 0,
-      error: 'Flo is not connected to WhatsApp.',
+      error: 'SENOVA POS is not connected to WhatsApp.',
       reason: 'not_connected',
       errors: [],
     };
@@ -3999,7 +3999,7 @@ export function formatStoredZReportWhatsAppMessage(
   const businessName =
     (options?.businessName !== undefined
       ? options.businessName
-      : (getSettingValue('business_name') ?? '')) || 'FloCafe';
+      : (getSettingValue('business_name') ?? '')) || 'SENOVA POS';
 
   let closedByName = options?.closedByName;
   if (!closedByName) {

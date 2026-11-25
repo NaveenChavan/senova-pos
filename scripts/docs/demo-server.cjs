@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Standalone Isolated Demo Server for FloCafe End-User Documentation & Screenshot Capture.
+ * Standalone Isolated Demo Server for SENOVA POS End-User Documentation & Screenshot Capture.
  *
  * Runs Express API + Static Frontend on PORT (default: 3101),
  * Standalone KDS on KDS_PORT (default: 3102),
@@ -12,14 +12,14 @@ const os = require('os');
 const path = require('path');
 const Module = require('module');
 
-const demoDir = path.join(os.tmpdir(), 'flocafe-demo-docs-' + Date.now());
+const demoDir = path.join(os.tmpdir(), 'senova-pos-demo-docs-' + Date.now());
 fs.mkdirSync(demoDir, { recursive: true });
 
 process.env.PORT = process.env.PORT || '3101';
 process.env.KDS_PORT = process.env.KDS_PORT || '3102';
 process.env.SERVER_APP_PORT = process.env.SERVER_APP_PORT || '3103';
 
-process.env.JWT_SECRET = 'flocafe-docs-demo-secret-key-2026';
+process.env.JWT_SECRET = 'senova-pos-docs-demo-secret-key-2026';
 process.env.FLO_AUTH_RATE_LIMIT_MAX = '10000';
 process.env.FLO_SETTINGS_READ_RATE_LIMIT_MAX = '100000';
 process.env.FLO_SETTINGS_WRITE_RATE_LIMIT_MAX = '10000';
@@ -49,7 +49,7 @@ const { seedBlueHarborCafe } = require('./seed-blue-harbor.cjs');
 
 async function run() {
   console.log('='.repeat(60));
-  console.log('Starting FloCafe Documentation Demo Server');
+  console.log('Starting SENOVA POS Documentation Demo Server');
   console.log(`Isolated Data Directory: ${demoDir}`);
   console.log('='.repeat(60));
 
@@ -65,7 +65,7 @@ async function run() {
   const serverPort = getServerAppPort();
 
   console.log('------------------------------------------------------------');
-  console.log(`FloCafe POS & Back Office: http://localhost:${apiPort}`);
+  console.log(`SENOVA POS & Back Office: http://localhost:${apiPort}`);
   console.log(`Kitchen Display System:    http://localhost:${kdsPort}`);
   console.log(`Server Companion App:      http://localhost:${serverPort}`);
   console.log('------------------------------------------------------------');

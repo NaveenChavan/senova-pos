@@ -70,7 +70,7 @@ export function createMainWindow(
     height: 900,
     minWidth: 1024,
     minHeight: 768,
-    title: 'Flo',
+    title: 'SENOVA POS - Restaurant Manager',
     titleBarStyle: platform === 'darwin' ? 'hiddenInset' : 'hidden',
     ...(resolvedTitleBarMode === 'native-overlay'
       ? {
@@ -138,7 +138,7 @@ export function getPopupWindowOptions(isBlank: boolean): BrowserWindowConstructo
   return {
     width: isBlank ? 800 : 1280,
     height: isBlank ? 600 : 800,
-    title: isBlank ? 'Print Receipt' : 'Flo - Kitchen Display',
+    title: isBlank ? 'Print Receipt' : 'SENOVA POS - Kitchen Display',
     autoHideMenuBar: isBlank,
     webPreferences: {
       contextIsolation: true,
@@ -151,7 +151,7 @@ export function getKdsWindowOptions(): BrowserWindowConstructorOptions {
   return {
     width: 1200,
     height: 800,
-    title: 'Flo - Kitchen Display',
+    title: 'SENOVA POS - Kitchen Display',
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -207,15 +207,15 @@ export function createMainWindowWillNavigateHandler(
         if (res && typeof (res as Promise<unknown>).catch === 'function') {
           (res as Promise<unknown>).catch((err: unknown) => {
             const message = err instanceof Error ? err.message : String(err);
-            warn('[Flo] Failed to open external URL:', message);
+            warn('[SENOVA POS] Failed to open external URL:', message);
           });
         }
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : String(err);
-        warn('[Flo] Failed to open external URL:', message);
+        warn('[SENOVA POS] Failed to open external URL:', message);
       }
     } else {
-      warn('[Flo] Blocked unsafe navigation URL:', url);
+      warn('[SENOVA POS] Blocked unsafe navigation URL:', url);
     }
   };
 }

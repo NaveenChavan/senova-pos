@@ -72,7 +72,7 @@ const SELECTABLE_LANGUAGES: Language[] = (Object.keys(LANGUAGES) as Language[]).
 
 // Mirrors main/services/cloud-sync.ts DEFAULT_CLOUD_SERVER_URL — kept in sync
 // manually since the frontend can't import backend TS modules directly.
-const DEFAULT_CLOUD_SERVER_URL = 'https://blue.flopos.com/';
+const DEFAULT_CLOUD_SERVER_URL = 'https://blue.senovadigitallabs.example/';
 const SETUP_STATUS_MAX_RETRIES = 2;
 const SETUP_STATUS_RETRY_DELAY_MS = 400;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -409,7 +409,13 @@ export default function SetupPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted px-4 py-12">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
-          <img src="/logo.svg" alt="Flo" width={72} height={72} className="mx-auto mb-4" />
+          <img
+            src="/senova-icon.png"
+            alt="SENOVA POS"
+            width={72}
+            height={72}
+            className="mx-auto mb-4"
+          />
           <h1 className="text-3xl font-bold">{t('welcome')}</h1>
           <p className="text-muted-foreground mt-2">{t('tagline')}</p>
         </div>
@@ -917,7 +923,7 @@ export default function SetupPage() {
                     <span>
                       {t('termsIntro')}{' '}
                       <a
-                        href="https://flopos.com/terms"
+                        href="https://www.senovadigital.xyz/terms"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary underline"
@@ -926,7 +932,7 @@ export default function SetupPage() {
                       </a>
                       ,{' '}
                       <a
-                        href="https://flopos.com/privacy"
+                        href="https://www.senovadigital.xyz/privacy"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary underline"
@@ -935,7 +941,7 @@ export default function SetupPage() {
                       </a>
                       , {t('termsAnd')}{' '}
                       <a
-                        href="https://flopos.com/disclaimer"
+                        href="https://www.senovadigital.xyz/disclaimer"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary underline"

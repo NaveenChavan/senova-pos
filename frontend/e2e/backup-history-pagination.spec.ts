@@ -123,7 +123,7 @@ async function setupMockedSession(page: Page): Promise<void> {
           connected: true,
           account_email: 'owner@flo.local',
           destination_folder_id: 'folder-a',
-          destination_folder_name: 'FloCafe Backups',
+          destination_folder_name: 'SENOVA POS Backups',
           frequency: 'daily',
           retention_count: 7,
           last_backup_at: '2026-03-01T12:00:16.000Z',
@@ -140,7 +140,7 @@ async function setupMockedSession(page: Page): Promise<void> {
         status: 200,
         contentType: 'application/json',
         body: JSON.stringify({
-          destinations: [{ id: 'folder-a', name: 'FloCafe Backups', current: true }],
+          destinations: [{ id: 'folder-a', name: 'SENOVA POS Backups', current: true }],
         }),
       });
       return;

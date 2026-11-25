@@ -114,7 +114,7 @@ test('daily-sales WhatsApp send distinguishes confirmed transport delivery from 
           success: true,
           deliveryStatus: 'sent',
           messageId: 101,
-          body: '*FloCafe*\nDaily Sales Report\n*Net Collections: ฿250.00*',
+          body: '*SENOVA POS*\nDaily Sales Report\n*Net Collections: ฿250.00*',
         }),
       });
       return;
@@ -127,7 +127,7 @@ test('daily-sales WhatsApp send distinguishes confirmed transport delivery from 
           success: true,
           deliveryStatus: 'submitted',
           messageId: 102,
-          body: '*FloCafe*\nDaily Sales Report\n*Net Collections: ฿250.00*',
+          body: '*SENOVA POS*\nDaily Sales Report\n*Net Collections: ฿250.00*',
         }),
       });
       return;
@@ -138,7 +138,7 @@ test('daily-sales WhatsApp send distinguishes confirmed transport delivery from 
       body: JSON.stringify({
         fallback: true,
         reason: 'not_connected',
-        body: '*FloCafe*\nDaily Sales Report\n*Net Collections: ฿250.00*',
+        body: '*SENOVA POS*\nDaily Sales Report\n*Net Collections: ฿250.00*',
       }),
     });
   });

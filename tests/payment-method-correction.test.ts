@@ -2039,7 +2039,7 @@ async function main() {
           useAuthStore.setState({
             currentTenant: {
               id: 1,
-              business_name: 'Flo Test',
+              business_name: 'SENOVA POS Test',
               slug: 'flo-test',
               database_name: 'flo',
               business_type: 'restaurant',

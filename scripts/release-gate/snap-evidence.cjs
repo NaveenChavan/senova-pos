@@ -12,12 +12,12 @@ function arg(argv, name) {
 function createSnapEvidence({ tag, channel, architecture }) {
   const evidence = {
     schemaVersion: 1,
-    type: 'flocafe-snap-publication',
+    type: 'senova-pos-snap-publication',
     tag,
     channel,
     architecture,
     status: 'published',
-    snapName: 'flocafe',
+    snapName: 'senova-pos',
     smartScreen: 'not-applicable',
   };
   assertSnapEvidence(evidence, { tag, channel });
@@ -36,7 +36,9 @@ function main() {
 }
 
 if (require.main === module) {
-  try { main(); } catch (error) {
+  try {
+    main();
+  } catch (error) {
     console.error(`::error::${error instanceof Error ? error.message : String(error)}`);
     process.exitCode = 1;
   }

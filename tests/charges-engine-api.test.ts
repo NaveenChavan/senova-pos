@@ -119,7 +119,7 @@ function installThermalChargeTemplate(db: any, templateId: string): void {
     VALUES (?, 'pack-charges', 'pack-charges-v1', 'US', 'US-FED', 'Charges receipt', '[48]', ?, ?, 'installed')
   `).run(
     templateId,
-    JSON.stringify({ id: 'flocafe-thermal-receipt-template', version: 1 }),
+    JSON.stringify({ id: 'senova-pos-thermal-receipt-template', version: 1 }),
     JSON.stringify(payload),
   );
 }

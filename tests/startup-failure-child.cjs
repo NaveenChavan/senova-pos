@@ -49,7 +49,7 @@ const app = {
   setPath() {},
   getPath: () => testDir,
   getVersion: () => 'test',
-  getName: () => 'Flo Test',
+  getName: () => 'SENOVA POS Test',
   requestSingleInstanceLock: () => true,
   whenReady: () => Promise.resolve(),
   on: register,

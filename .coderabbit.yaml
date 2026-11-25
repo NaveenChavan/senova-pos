@@ -22,7 +22,7 @@ reviews:
   path_instructions:
     - path: "**/*"
       instructions: |
-        Review code against FloCafe core architectural invariants and guidelines documented in AGENTS.md and docs/reference/product-invariants.md:
+        Review code against SENOVA POS core architectural invariants and guidelines documented in AGENTS.md and docs/reference/product-invariants.md:
         1. Orders are never ownership-gated: Any staff role with order access can view and act on every order. Never introduce checks like `order.user_id !== user.userId` or `role === 'server' && order.user_id !== ...`.
         2. Configurable permissions: Staff permissions are owner-configurable. Use `requirePermission` or `requireAnyPermission` middleware; do not introduce `requireRole(...)` runtime gates.
         3. Offline-first operation: Core POS operations (orders, billing, KDS, printing) must function offline. Optional external integrations must degrade gracefully without crashing or blocking core workflows.

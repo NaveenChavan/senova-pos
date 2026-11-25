@@ -1,5 +1,5 @@
 /**
- * Integration and regression test suite for FloCafe Issue #1181:
+ * Integration and regression test suite for SENOVA POS Issue #1181:
  * KDS and Server App login buckets bypass the POS failed-login lockout.
  *
  * Verifies:

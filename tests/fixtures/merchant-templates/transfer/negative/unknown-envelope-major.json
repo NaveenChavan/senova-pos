@@ -1,5 +1,5 @@
 {
-  "format": "flocafe-merchant-template",
+  "format": "senova-pos-merchant-template",
   "schemaVersion": 2,
   "exportedAt": "2026-02-14T09:00:00.000Z",
   "appVersion": "0.9.0",
@@ -10,7 +10,7 @@
   },
   "checksum": "f2f8809a097ecbf3aa2c16247533588a5211a8a112e3c138876335e8047a5140",
   "template": {
-    "format": "flocafe-merchant-print-template",
+    "format": "senova-pos-merchant-print-template",
     "documentType": "receipt",
     "schemaVersion": 1,
     "blocks": [

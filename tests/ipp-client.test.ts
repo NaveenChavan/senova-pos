@@ -11,12 +11,12 @@
  *   while outbound UNIX socket /private/var/run/cupsd is permitted by application.sb:293,777-779
  *   and socket-activated by launchd (org.cups.cupsd.plist). Submitting raw ESC/POS bytes with
  *   document-format = application/vnd.cups-raw succeeds with HTTP 200 / IPP 0x0000 (successful-ok),
- *   FloCafe logs `[Printer] IPP print queued for "EPSON_TM_T20II" (job <id>)`, /var/log/cups/access_log
+ *   SENOVA POS logs `[Printer] IPP print queued for "EPSON_TM_T20II" (job <id>)`, /var/log/cups/access_log
  *   records `"POST /printers/EPSON_TM_T20II HTTP/1.1" 200 <bytes> Print-Job successful-ok`, and
  *   /var/log/cups/error_log records no filter or permission errors.
  * - Scenario B (No matching CUPS queue configured):
  *   CUPS returns HTTP 200 with IPP statusCode 0x0406 (client-error-not-found) and status-message
- *   "The printer or class does not exist." FloCafe logs `[Printer] IPP print failed for "<name>":
+ *   "The printer or class does not exist." SENOVA POS logs `[Printer] IPP print failed for "<name>":
  *   Printer queue "<name>" was not found in macOS Printers & Scanners...` and returns
  *   { ok: false, failureClass: 'not_configured' } with actionable System Settings > Printers & Scanners
  *   setup guidance.
@@ -495,7 +495,7 @@ async function testMockCupsServerAndMasDispatch(): Promise<void> {
     assert.equal(detected[0].connectionType, 'usb');
     assert.equal(detected[0].isDefault, true);
 
-    const payload = Buffer.from('\x1b@\x1bE\x01FloCafe MAS Test\n\x1dV\x00', 'binary');
+    const payload = Buffer.from('\x1b@\x1bE\x01SENOVA POS MAS Test\n\x1dV\x00', 'binary');
     receivedRequests.length = 0;
     const printOk = await printViaUSB(payload, 'EPSON_TM_T20II');
     assert.equal(printOk.ok, true, 'printViaUSB succeeds over local IPP on MAS darwin');

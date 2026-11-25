@@ -35,7 +35,7 @@ import { getCurrencyMinorUnitFactor } from '../countries';
 import { assertOnlineAllowed, isOfflineMode } from './offline-mode';
 import { normalizeSupportedCurrencyCode } from '../../shared/currencies';
 
-export const DEFAULT_CLOUD_SERVER_URL = 'https://blue.flopos.com/';
+export const DEFAULT_CLOUD_SERVER_URL = 'https://blue.senovadigitallabs.example/';
 
 const HEARTBEAT_INTERVAL_MS = 5 * 60_000;
 const OUTBOX_INTERVAL_MS = 15_000;
@@ -1457,7 +1457,7 @@ export class CloudSyncService {
   }
 
   private isDevCloudRecoveryAllowed(): boolean {
-    return Boolean(app && !app.isPackaged && process.env.FLOCAFE_ALLOW_DEV_CLOUD_RECOVERY === '1');
+    return Boolean(app && !app.isPackaged && process.env.SENOVA_ALLOW_DEV_CLOUD_RECOVERY === '1');
   }
 
   isTrustedRecoveryServerUrl(rawUrl?: string): boolean {

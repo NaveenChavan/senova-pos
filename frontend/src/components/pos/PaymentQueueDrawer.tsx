@@ -125,8 +125,8 @@ export function PaymentQueueDrawer({
       if (cursor) params.cursor = cursor;
       if (searchQuery.trim()) {
         let cleanSearch = searchQuery.trim();
-        if (cleanSearch.startsWith('FLOCAFE-TICKET:')) {
-          cleanSearch = cleanSearch.replace('FLOCAFE-TICKET:', '').trim();
+        if (cleanSearch.startsWith('SENOVA-TICKET:')) {
+          cleanSearch = cleanSearch.replace('SENOVA-TICKET:', '').trim();
         }
         params.search = cleanSearch;
       }

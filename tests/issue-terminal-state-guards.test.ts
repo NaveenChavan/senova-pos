@@ -1466,7 +1466,7 @@ async function main(): Promise<void> {
         id: 'test-customer-recompute-pack',
         country: 'IN',
         currency: 'INR',
-        publisher: 'FreeOpenSourcePOS',
+        publisher: 'SenovaDigitalLabs',
         rules: dualRatePackData.rules.map((r: any) =>
           r.id === 'rate-c' ? { ...r, rate: '10' } : r,
         ),

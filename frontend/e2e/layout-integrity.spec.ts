@@ -105,7 +105,7 @@ test('LAN/browser sidebar pins to the viewport top with zero title-bar markup on
     ).toBe(false);
     await expect(page.getByTestId('desktop-title-bar'), route.name).toHaveCount(0);
     await expect(page.getByTestId('desktop-drag-surface'), route.name).toHaveCount(0);
-    await expect(page.locator('html'), route.name).not.toHaveAttribute('data-flo-desktop-titlebar');
+    await expect(page.locator('html'), route.name).not.toHaveAttribute('data-senova-pos-titlebar');
 
     await assertViewportTopGeometry(`${route.name} expanded sidebar`);
     await page.keyboard.press('Control+b');
@@ -2416,7 +2416,7 @@ test.describe('customer display wraps full receipt numbers and pages on TV', () 
       const responseBody = (orders: DisplayOrder[]) =>
         isPaired
           ? {
-              business_name: 'Flo Cafe',
+              business_name: 'SENOVA POS',
               config: {
                 statuses: ['pending', 'preparing', 'ready'],
                 refresh_seconds: 3,
@@ -2884,7 +2884,7 @@ test.describe('customer display wraps full receipt numbers and pages on TV', () 
               status: 200,
               contentType: 'application/json',
               body: JSON.stringify({
-                business_name: 'Flo Cafe',
+                business_name: 'SENOVA POS',
                 config: {
                   statuses: ['pending', 'preparing', 'ready'],
                   refresh_seconds: 3,
@@ -2909,7 +2909,7 @@ test.describe('customer display wraps full receipt numbers and pages on TV', () 
             status: 200,
             contentType: 'application/json',
             body: JSON.stringify({
-              business_name: 'Flo Cafe',
+              business_name: 'SENOVA POS',
               config: {
                 statuses: ['pending', 'preparing', 'ready'],
                 refresh_seconds: 3,
@@ -3199,7 +3199,7 @@ test.describe('customer display wraps full receipt numbers and pages on TV', () 
               status: 200,
               contentType: 'application/json',
               body: JSON.stringify({
-                business_name: 'Flo Cafe',
+                business_name: 'SENOVA POS',
                 config: {
                   statuses: ['pending', 'preparing', 'ready'],
                   refresh_seconds: 2,
@@ -3229,7 +3229,7 @@ test.describe('customer display wraps full receipt numbers and pages on TV', () 
             status: 200,
             contentType: 'application/json',
             body: JSON.stringify({
-              business_name: 'Flo Cafe',
+              business_name: 'SENOVA POS',
               config: {
                 statuses: ['pending', 'preparing', 'ready'],
                 refresh_seconds: 2,

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * CI test sharding for the FloCafe "Core test suite" (`npm test`).
+ * CI test sharding for the SENOVA POS "Core test suite" (`npm test`).
  *
  * The canonical, ordered suite list lives in package.json's "test" script as a
  * chain of `node scripts/run-test.cjs npm run test:<name>` invocations. This helper

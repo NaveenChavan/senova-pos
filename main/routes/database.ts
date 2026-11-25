@@ -877,7 +877,7 @@ export async function handleRestoreFromPickedFile(req: Request, res: Response) {
   if (backupVersion === null) {
     return res.status(400).json({
       error:
-        'Invalid backup file: missing schema version metadata. This backup may have been created with an older version of Flo.',
+        'Invalid backup file: missing schema version metadata. This backup may have been created with an older version of SENOVA POS.',
     });
   }
 

@@ -7,7 +7,7 @@
  * - Order creation with dispatch_policy ('on_payment' for takeaway and dine_in, rejected for delivery)
  * - Deferred release (no stock deduction, no KDS/KOT auto-print prior to payment)
  * - Shared payment queue (/api/orders/awaiting-payment) with pagination and search
- * - Ticket lookup by order number and QR code payload (FLOCAFE-TICKET:<order_number>)
+ * - Ticket lookup by order number and QR code payload (SENOVA-TICKET:<order_number>)
  * - Release gate: manual release of unpaid on_payment order rejected (409 ORDER_NOT_PAID)
  * - Prepayment lifecycle: partial payment updates balance; full payment triggers release
  * - Prepayment invariants: payment never marks kitchen completed and never prematurely frees dine-in tables
@@ -755,8 +755,8 @@ async function main() {
     );
     assertEqualOrThrow(
       orderRes.body.qr_payload,
-      `FLOCAFE-TICKET:${order1.order_number}`,
-      'qr_payload carries FLOCAFE-TICKET prefix and order number',
+      `SENOVA-TICKET:${order1.order_number}`,
+      'qr_payload carries SENOVA-TICKET prefix and order number',
     );
     assertOrThrow(typeof orderRes.body.qr_data_url === 'string', 'qr_data_url is provided');
     assertOrThrow(
@@ -891,7 +891,7 @@ async function main() {
 
     // Ticket lookup: by full QR payload
     const lookupQr = await req({
-      path: `/api/orders/by-ticket/${encodeURIComponent(`FLOCAFE-TICKET:${order1.order_number}`)}`,
+      path: `/api/orders/by-ticket/${encodeURIComponent(`SENOVA-TICKET:${order1.order_number}`)}`,
       method: 'GET',
       headers: cashier.authHeader,
     });
@@ -2282,7 +2282,7 @@ async function main() {
     const controlTokenText = escPosToText(controlTokenBytes);
     assertEqualOrThrow(controlTokenCutCount, 1, 'catalog text cannot inject a printer cut command');
     assertOrThrow(controlTokenText.includes('Balance Due:'), 'ticket continues through balance');
-    assertOrThrow(controlTokenText.includes('FLOCAFE-TICKET:'), 'ticket continues through QR text');
+    assertOrThrow(controlTokenText.includes('SENOVA-TICKET:'), 'ticket continues through QR text');
 
     db.prepare("UPDATE orders SET status = 'cancelled' WHERE id = ?").run(splitBalanceOrder.id);
 

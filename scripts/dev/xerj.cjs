@@ -79,17 +79,17 @@ function run(command, args, acceptedExitCodes = [0]) {
 }
 
 function printHelp() {
-  console.log(`FloCafe XERJ code search
+  console.log(`SENOVA POS XERJ code search
 
 Usage: node scripts/dev/xerj.cjs <command>
 
 Commands:
   doctor           Check the local XERJ installation, server, and Codex registration
   serve            Run a loopback-only XERJ server in the foreground
-  index            Index non-ignored FloCafe code and documentation
-  map              Show the indexed FloCafe datasets
-  query <text>     Search the FloCafe index for relevant passages
-  def <symbol>     Find an exact symbol definition in the FloCafe index
+  index            Index non-ignored SENOVA POS code and documentation
+  map              Show the indexed SENOVA POS datasets
+  query <text>     Search the SENOVA POS index for relevant passages
+  def <symbol>     Find an exact symbol definition in the SENOVA POS index
   configure-codex  Register the local XERJ MCP server in Codex user configuration
 
 The server and index are optional developer tools. Local data is stored under .xerj/.
@@ -150,7 +150,7 @@ function index() {
       '--url',
       endpoint,
       '--prefix',
-      'flocafe',
+      'senova-pos',
       '--state-dir',
       stateDir,
       '--plan',
@@ -168,7 +168,15 @@ function index() {
 
 function map() {
   const xerj = requireXerj();
-  run(xerj, ['autoindex', 'map', '--url', endpoint, '--prefix', 'flocafe', '--disable-feedback']);
+  run(xerj, [
+    'autoindex',
+    'map',
+    '--url',
+    endpoint,
+    '--prefix',
+    'senova-pos',
+    '--disable-feedback',
+  ]);
 }
 
 function query() {
@@ -176,7 +184,18 @@ function query() {
   if (!text) throw new Error('Provide a plain-language search query.');
 
   const xerj = requireXerj();
-  run(xerj, ['search', '--url', endpoint, '--prefix', 'flocafe', '-k', '5', '--full', '800', text]);
+  run(xerj, [
+    'search',
+    '--url',
+    endpoint,
+    '--prefix',
+    'senova-pos',
+    '-k',
+    '5',
+    '--full',
+    '800',
+    text,
+  ]);
 }
 
 function findDefinition() {
@@ -184,7 +203,7 @@ function findDefinition() {
   if (!symbol) throw new Error('Provide an exact symbol name.');
 
   const xerj = requireXerj();
-  run(xerj, ['def', '--url', endpoint, '--prefix', 'flocafe', symbol]);
+  run(xerj, ['def', '--url', endpoint, '--prefix', 'senova-pos', symbol]);
 }
 
 function configureCodex() {

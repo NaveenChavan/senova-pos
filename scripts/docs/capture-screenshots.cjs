@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Automated Screenshot Capture Script for FloCafe Documentation.
+ * Automated Screenshot Capture Script for SENOVA POS Documentation.
  *
  * Connects to the running demo server (port 3101, 3102, 3103),
  * drives Chromium via Playwright, and captures crisp documentation screenshots
- * into flopos.com's assets/docs/ directory.
+ * into senovadigitallabs.example's assets/docs/ directory.
  *
  * Enforces strict verification: missing UI elements produce actionable errors,
  * all captured files are verified on disk, and failures exit non-zero.
@@ -87,10 +87,10 @@ async function ensureDemoServer() {
 
 const candidateDirs = [
   process.env.DOCS_ASSETS_DIR,
-  path.resolve(__dirname, '../../../flopos.com-help-center/assets/docs'),
-  path.resolve(__dirname, '../../flopos.com-help-center/assets/docs'),
-  path.resolve(__dirname, '../../../flopos.com/assets/docs'),
-  path.resolve(__dirname, '../../flopos.com/assets/docs'),
+  path.resolve(__dirname, '../../../senovadigitallabs.example-help-center/assets/docs'),
+  path.resolve(__dirname, '../../senovadigitallabs.example-help-center/assets/docs'),
+  path.resolve(__dirname, '../../../senovadigitallabs.example/assets/docs'),
+  path.resolve(__dirname, '../../senovadigitallabs.example/assets/docs'),
   path.resolve(__dirname, '../../docs-assets'),
 ].filter(Boolean);
 
@@ -139,7 +139,7 @@ const REQUIRED_SCREENSHOTS = [
 
 async function capture() {
   console.log('='.repeat(60));
-  console.log('Capturing FloCafe Help Center Screenshots');
+  console.log('Capturing SENOVA POS Help Center Screenshots');
   console.log(`Output Directory: ${OUTPUT_DIR}`);
   console.log(`Expected Files: ${REQUIRED_SCREENSHOTS.length}`);
   console.log('='.repeat(60));

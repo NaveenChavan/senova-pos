@@ -13,7 +13,8 @@ import {
 import { captureSettings, restoreSettings } from './helpers/kitchen-fixture';
 
 const EVIDENCE_DIR =
-  process.env.EVIDENCE_DIR || path.join(os.tmpdir(), 'flocafe-approval-manager-selection-evidence');
+  process.env.EVIDENCE_DIR ||
+  path.join(os.tmpdir(), 'senova-pos-approval-manager-selection-evidence');
 
 const GATE_SETTINGS = [
   'billing_type',

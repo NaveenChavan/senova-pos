@@ -1,25 +1,25 @@
 # Linux installation and support
 
-FloCafe runs on current Linux distributions through AppImage, deb, rpm, and Snap packages. Choose
+SENOVA POS runs on current Linux distributions through AppImage, deb, rpm, and Snap packages. Choose
 the format your distribution supports best.
 
 ## Packages
 
 | Format | For |
 | --- | --- |
-| **AppImage** (`flocafe-*.appimage`) | Any distribution, with no install step |
-| **deb** (`flocafe-*.deb`) | Debian, Ubuntu, and derivatives |
-| **rpm** (`flocafe-*.rpm`) | Fedora, the RHEL family, and compatible distributions |
-| **Snap** (`flocafe-*.snap`) | Snap-enabled distributions |
+| **AppImage** (`senova-pos-*.appimage`) | Any distribution, with no install step |
+| **deb** (`senova-pos-*.deb`) | Debian, Ubuntu, and derivatives |
+| **rpm** (`senova-pos-*.rpm`) | Fedora, the RHEL family, and compatible distributions |
+| **Snap** (`senova-pos-*.snap`) | Snap-enabled distributions |
 
 Every format is built for both `x64` and `arm64`.
 
 ```bash
 # deb
-sudo dpkg -i flocafe-*.deb && sudo apt-get install -f
+sudo dpkg -i senova-pos-*.deb && sudo apt-get install -f
 
 # AppImage
-chmod +x flocafe-*.appimage && ./flocafe-*.appimage
+chmod +x senova-pos-*.appimage && ./senova-pos-*.appimage
 ```
 
 ## AppImage and FUSE
@@ -38,14 +38,14 @@ sudo apt install libfuse2t64
 If FUSE is unavailable or the AppImage will not mount, run it extracted:
 
 ```bash
-./flocafe-*.appimage --appimage-extract
+./senova-pos-*.appimage --appimage-extract
 ./squashfs-root/AppRun
 ```
 
 ## Updates
 
 The in-app updater is available only when the app is launched from a downloaded AppImage, because
-that is the only case where FloCafe can see `APPIMAGE` in its environment. It is not used for an
+that is the only case where SENOVA POS can see `APPIMAGE` in its environment. It is not used for an
 extracted AppImage, a deb, or an rpm installation.
 
 Update deb and rpm installations with your distribution's package manager. Snap installations are
@@ -53,7 +53,7 @@ updated by snapd from the Snap Store, and a beta install follows the Snap Store 
 rather than `stable`.
 
 If an AppImage update is unavailable, download the replacement from
-[GitHub Releases](https://github.com/FreeOpenSourcePOS/FloCafe/releases). For the channel model and
+[GitHub Releases](https://github.com/SenovaDigitalLabs/senova-pos/releases). For the channel model and
 what a beta build follows, see [desktop releases](maintainers/releases.md).
 
 ## Printing
@@ -99,6 +99,6 @@ as `trayer` or `stalonetray`. Alternatively use **File > Exit** inside the app.
 
 ## Get help
 
-Include your FloCafe version, Linux distribution and version, package format, and the relevant app
+Include your SENOVA POS version, Linux distribution and version, package format, and the relevant app
 logs when reporting a problem. Do not delete your local database to diagnose a startup issue. Create
 or restore a backup first.

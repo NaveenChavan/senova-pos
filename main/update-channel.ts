@@ -3,7 +3,7 @@
 /** Setting key persisting the in-app beta channel opt-in. */
 export const BETA_CHANNEL_SETTING_KEY = 'updates.beta_channel_enabled';
 
-/** The only prerelease identifier FloCafe treats as a real update channel (#503). */
+/** The only prerelease identifier SENOVA POS treats as a real update channel (#503). */
 export type SupportedPrereleaseChannel = 'beta';
 
 export interface ResolvedUpdateChannel {
@@ -32,10 +32,9 @@ export function resolveUpdateChannel(inputs: UpdateChannelInputs): ResolvedUpdat
 /** Parses stored setting value for beta opt-in, defaulting by build type. */
 export function parseStoredBetaChannelEnabled(
   value: string | null | undefined,
-  defaultForBetaBuild: boolean = false
+  defaultForBetaBuild: boolean = false,
 ): boolean {
   if (value === 'true') return true;
   if (value === 'false') return false;
   return defaultForBetaBuild;
 }
-
